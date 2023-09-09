@@ -22,9 +22,10 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:layout_marginStart="30dp"
+                android:layout_marginStart="130dp"
                 android:layout_marginTop="30dp"
-                android:src="@drawable/ic_law" />
+                android:src="@drawable/ic_law"
+                android:layout_alignParentStart="true" />
 
             <TextView
                 android:layout_width="wrap_content"
