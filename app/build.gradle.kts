@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -49,4 +50,16 @@ dependencies {
 
     //circular image view:
     implementation ("com.mikhaellopez:circularimageview:4.3.1")
+
+    //firebase bom
+    implementation(platform("com.google.firebase:firebase-bom:32.2.3"))
+
+    //firebase auth
+    implementation("com.google.firebase:firebase-auth-ktx:22.1.1")
+
+    //realtime database
+    implementation("com.google.firebase:firebase-database:20.2.2")
+
+    //firebase storage
+    implementation("com.google.firebase:firebase-storage:20.2.1")
 }
