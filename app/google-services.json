@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "924342293394",
+    "project_id": "jurytech-9d2cf",
+    "storage_bucket": "jurytech-9d2cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:924342293394:android:765e73a279a7ea7d69a74b",
+        "android_client_info": {
+          "package_name": "com.example.lawdcm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYIyD_ArxwsiyfylEShj1fSK18tW5UbzQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
