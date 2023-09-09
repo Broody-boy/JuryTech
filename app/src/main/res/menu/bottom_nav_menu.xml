@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_item_dashboard"
+        android:icon="@drawable/ic_home_selector"
+        android:title="Dashboard" />
+
+    <item
+        android:id="@+id/menu_item_currentCases"
+        android:icon="@drawable/ic_gavel_selector"
+        android:title="Current cases" />
+
+    <item
+        android:id="@+id/menu_item_profile"
+        android:icon="@drawable/ic_profile_selector"
+        android:title="Profile" />
+
+</menu>

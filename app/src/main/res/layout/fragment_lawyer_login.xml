@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".LoginSelectionPage"
+    android:background="@color/login_page_bgcolor"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/ic_law" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Portal to manage your\n all all Judiciary needs"
+                android:layout_alignParentBottom="true"
+                android:textSize="28dp"
+                android:textStyle="bold"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="10dp"/>
+            
+        </RelativeLayout>
+
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutEmail"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            app:endIconMode="clear_text"
+            app:endIconDrawable="@drawable/close"
+            android:layout_above="@id/inputLayoutPassword"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginBottom="20dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            android:hint="Email"
+            android:textColorHint="#a3aeb4"
+            app:hintTextColor="#475a69">
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textSize="17sp"
+                android:background="@drawable/login_et_background_selector"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            android:id="@+id/inputLayoutPassword"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleDrawable="@drawable/password_eye_open_close_selector"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            android:hint="Password"
+            android:textColorHint="#a3aeb4"
+            app:hintTextColor="#475a69"
+            android:layout_above="@+id/btnLogin"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginBottom="20dp">
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="textPassword"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textSize="17sp"
+                android:background="@drawable/login_et_background_selector"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/login_button_bg"
+                android:text="LOGIN"
+                android:textColor="@color/white"
+                android:fontFamily="@font/rounded_bold"
+                android:textSize="17sp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="25dp"/>
+
+    </RelativeLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <FrameLayout
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="27dp">
+            <View
+                android:layout_width="150dp"
+                android:layout_height="1.25dp"
+                android:background="@color/login_page_divider_color"
+                android:layout_gravity="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OR"
+                android:textColor="@color/login_page_divider_text_color"
+                android:layout_gravity="center"
+                android:background="@color/login_page_bgcolor"
+                android:paddingHorizontal="10dp"/>
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/loginWithPhoneCard"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/bg_card_login_page"
+            android:layout_below="@id/divider"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingStart="25dp"
+                android:paddingVertical="22.5dp">
+
+                <ImageView
+                    android:layout_width="39dp"
+                    android:layout_height="39dp"
+                    android:src="@drawable/ic_phone"
+                    android:scaleType="centerCrop"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    android:paddingStart="25dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Login With Phone"
+                        android:textColor="@color/login_with_google_text_color"
+                        android:fontFamily="@font/dmsans_medium"
+                        android:textSize="24sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/loginWithGoogleCard"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/bg_card_login_page"
+            android:layout_below="@id/loginWithPhoneCard"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingStart="25dp"
+                android:paddingVertical="22.5dp">
+
+                <ImageView
+                    android:layout_width="39dp"
+                    android:layout_height="39dp"
+                    android:src="@drawable/ic_google"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    android:paddingStart="25dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Login With Google"
+                        android:textColor="@color/login_with_google_text_color"
+                        android:fontFamily="@font/dmsans_medium"
+                        android:textSize="24sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

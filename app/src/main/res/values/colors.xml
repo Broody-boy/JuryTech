@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="card_login_page_color">#FFFFFFFF</color>
+    <color name="card_login_page_border_color">#e7e8e7</color>
+    <color name="login_page_bgcolor">#f5f5f5</color>
+    <color name="login_with_google_text_color">#171817</color>
+    <color name="login_page_divider_color">#999999</color>
+    <color name="login_page_divider_text_color">#000000</color>
+    <color name="dark_gray">#49454f</color>
+</resources>

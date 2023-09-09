@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ongoing Cases"
+        android:fontFamily="@font/rounded_bold"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
+
+    <ImageView
+        android:id="@+id/imgPlaceholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_judge"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/header"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCases"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imgPlaceholder"
+        android:layout_marginTop="40dp"
+        tools:listitem="@layout/item_case"/>
+
+</RelativeLayout>
