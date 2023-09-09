@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="15dp">
+
+    <TextView
+        android:id="@+id/tvheader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add a Judge"
+        android:fontFamily="@font/rounded_bold"
+        android:textSize="33dp"
+        android:textColor="#053351"
+        android:layout_centerHorizontal="true"/>
+
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/imgJudge"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:src="@drawable/judge_placeholder"
+        android:layout_below="@id/tvheader"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="20dp"
+        app:civ_border_color="#053351"
+        app:civ_border_width="3dp"/>
+
+
+    <EditText
+        android:id="@+id/etJudgeId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_edittext_login"
+        android:hint="Judge Id"
+        android:layout_below="@id/imgJudge"
+        android:layout_marginTop="10dp"
+        android:padding="14dp"/>
+
+    <EditText
+        android:id="@+id/etJudgeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_edittext_login"
+        android:hint="Judge Name"
+        android:layout_below="@id/etJudgeId"
+        android:layout_marginTop="20dp"
+        android:padding="14dp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_button_login"
+        android:text="ADD"
+        android:textSize="20dp"
+        android:fontFamily="@font/rounded_bold"
+        android:textColor="@color/white"
+        android:layout_below="@id/etJudgeName"
+        android:layout_marginHorizontal="95dp"
+        android:layout_marginTop="20dp"/>
+
+</RelativeLayout>
