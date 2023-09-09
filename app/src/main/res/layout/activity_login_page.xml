@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LoginPage"
+    android:background="@drawable/waves">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_back"
+        android:drawableTint="@color/black"
+        android:text="Back"
+        android:textSize="18dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="17dp" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginBottom="60dp"
+        android:layout_alignParentBottom="true"
+        app:cardCornerRadius="10dp">
+    <RelativeLayout
+        android:id="@+id/layoutLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tvLoginHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="42dp"
+            android:text="Login"
+            android:fontFamily="@font/rounded_bold"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:id="@+id/tvLoginHelper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="LogIn to continue"
+            android:fontFamily="@font/rounded_bold"
+            android:textStyle="bold"
+            android:layout_below="@id/tvLoginHeader"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"/>
+
+        <RadioGroup
+            android:id="@+id/rgCourtType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/tvLoginHelper"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:animateLayoutChanges="true"
+            android:weightSum="3"
+            android:layout_marginHorizontal="20dp">
+
+            <RadioButton
+                android:id="@+id/rbCourtDistrict"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="District"
+                android:textSize="20sp"
+                android:layout_weight="1"/>
+
+            <RadioButton
+                android:id="@+id/rbCourtHigh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="High"
+                android:textSize="20sp"
+                android:layout_weight="1"/>
+
+            <RadioButton
+                android:id="@+id/rbCourtSupreme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Supreme"
+                android:textSize="20sp"
+                android:layout_weight="1"/>
+        </RadioGroup>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputRegistrarId"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            app:endIconMode="clear_text"
+            app:endIconDrawable="@drawable/close"
+            android:layout_below="@id/rgCourtType"
+            android:layout_marginBottom="20dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            android:hint="Registrar Id"
+            android:textColorHint="#a3aeb4"
+            app:hintTextColor="#475a69">
+            <EditText
+                android:id="@+id/etRegistrarId"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textSize="17sp"
+                android:background="@drawable/bg_edittext_login"
+                android:layout_marginHorizontal="25dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutEmail"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            app:endIconMode="clear_text"
+            app:endIconDrawable="@drawable/close"
+            android:layout_below="@id/inputRegistrarId"
+            android:layout_marginBottom="20dp"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            android:hint="Official Email ID"
+            android:textColorHint="#a3aeb4"
+            app:hintTextColor="#475a69">
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textSize="17sp"
+                android:background="@drawable/bg_edittext_login"
+                android:layout_marginHorizontal="25dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayoutPassKey"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            app:endIconMode="clear_text"
+            app:endIconDrawable="@drawable/close"
+            android:layout_below="@id/inputLayoutEmail"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            android:hint="PASSKEY"
+            android:textColorHint="#a3aeb4"
+            app:hintTextColor="#475a69">
+            <EditText
+                android:id="@+id/etPassKEY"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textSize="17sp"
+                android:background="@drawable/bg_edittext_login"
+                android:layout_marginHorizontal="25dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/tvForgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="19dp"
+            android:text="Forgot your passkey?"
+            android:fontFamily="@font/rounded_medium"
+            android:layout_below="@id/inputLayoutPassKey"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="25dp"
+            android:textColor="#969696"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LOGIN"
+            android:fontFamily="@font/rounded_bold"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:background="@drawable/bg_button_login"
+            android:layout_below="@id/tvForgotPassword"
+            android:layout_marginHorizontal="55dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="30dp" />
+
+
+
+    </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
