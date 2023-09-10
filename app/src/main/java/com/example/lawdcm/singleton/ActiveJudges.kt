@@ -20,7 +20,7 @@ object ActiveJudges {
 
     fun getJudgesListFromFirebase(courtId : String){
         val dbQuery = dbReference.orderByChild("courtId").equalTo(courtId)
-        dbQuery.addListenerForSingleValueEvent(object : ValueEventListener {
+        dbQuery.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     activeJudgesList.value?.clear()
