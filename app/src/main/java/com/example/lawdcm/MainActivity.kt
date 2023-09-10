@@ -1,5 +1,6 @@
 package com.example.lawdcm
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -24,6 +25,10 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId) {
                 R.id.menu_item_judges -> {
                     setFragment(judgeFragment)
+                }
+
+                R.id.menu_item_register_new_case -> {
+                    startActivity(Intent(this@MainActivity, RegisterNewCaseActivity::class.java))
                 }
             }
             true

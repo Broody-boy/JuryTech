@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/new_case_navgraph.xml"
+    app:startDestination="@id/caseDetailsFragment">
+
+    <fragment
+        android:id="@+id/caseDetailsFragment"
+        android:name="com.example.lawdcm.registernewcase.CaseDetailsFragment"
+        android:label="fragment_case_details"
+        tools:layout="@layout/fragment_case_details" >
+        <action
+            android:id="@+id/action_caseDetailsFragment_to_party1DetailsFragment"
+            app:destination="@id/party1DetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/party1DetailsFragment"
+        android:name="com.example.lawdcm.registernewcase.Party1DetailsFragment"
+        android:label="fragment_party1_details"
+        tools:layout="@layout/fragment_party1_details" >
+        <action
+            android:id="@+id/action_party1DetailsFragment_to_party2DetailsFragment"
+            app:destination="@id/party2DetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/party2DetailsFragment"
+        android:name="com.example.lawdcm.registernewcase.Party2DetailsFragment"
+        android:label="fragment_party2_details"
+        tools:layout="@layout/fragment_party2_details" >
+        <action
+            android:id="@+id/action_party2DetailsFragment_to_judgeDetailsFragment"
+            app:destination="@id/judgeDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/judgeDetailsFragment"
+        android:name="com.example.lawdcm.registernewcase.JudgeDetailsFragment"
+        android:label="fragment_judge_details"
+        tools:layout="@layout/fragment_judge_details" />
+</navigation>
