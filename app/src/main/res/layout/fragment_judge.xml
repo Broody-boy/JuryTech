@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".bottomnav.JudgeFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvActiveJudges"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f8f7fc"
+        tools:listitem="@layout/item_judge_detail"
+        android:layout_marginBottom="100dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAddJudge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_button_login"
+        android:text="ADD A NEW JUDGE"
+        android:textSize="20dp"
+        android:fontFamily="@font/rounded_bold"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="95dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp" />
+
+</RelativeLayout>

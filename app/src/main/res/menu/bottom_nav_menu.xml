@@ -7,6 +7,12 @@
         android:title="Dashboard" />
 
     <item
+        android:id="@+id/menu_item_judges"
+        android:icon="@drawable/ic_judge_selector"
+        android:title="Judges" />
+
+
+    <item
         android:id="@+id/menu_item_currentCases"
         android:icon="@drawable/ic_gavel_selector"
         android:title="Current cases" />
