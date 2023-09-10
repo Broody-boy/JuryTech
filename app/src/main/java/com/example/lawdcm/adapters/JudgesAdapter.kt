@@ -1,14 +1,13 @@
 package com.example.lawdcm.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.lawdcm.databinding.ItemJudgeDetailBinding
-import com.example.lawdcm.models.judgeDetails
+import com.example.lawdcm.models.JudgeDetails
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
@@ -16,7 +15,7 @@ class JudgesAdapter(val cntxt : Context) : RecyclerView.Adapter<JudgesAdapter.Vi
 
     val storageRef: StorageReference = FirebaseStorage.getInstance().reference
     lateinit var binding : ItemJudgeDetailBinding
-    var judgesList = listOf<judgeDetails>()
+    var judgesList = listOf<JudgeDetails>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding = ItemJudgeDetailBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -41,7 +40,7 @@ class JudgesAdapter(val cntxt : Context) : RecyclerView.Adapter<JudgesAdapter.Vi
         .addOnCanceledListener { Toast.makeText(cntxt, "gadbad2", Toast.LENGTH_SHORT).show() }
     }
 
-    fun setjudgeList(list: List<judgeDetails>) {
+    fun setjudgeList(list: List<JudgeDetails>) {
         judgesList = list
         notifyDataSetChanged()
     }
