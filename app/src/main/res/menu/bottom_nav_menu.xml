@@ -11,6 +11,11 @@
         android:icon="@drawable/ic_judge_selector"
         android:title="Judges" />
 
+    <item
+        android:id="@+id/menu_item_register_new_case"
+        android:title=""
+        android:icon="@drawable/ic_plus_round" />
+
 
     <item
         android:id="@+id/menu_item_currentCases"

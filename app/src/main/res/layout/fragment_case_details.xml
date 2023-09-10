@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".registernewcase.CaseDetailsFragment"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:contentInsetStart="0dp"
+        android:navigationIcon="@drawable/ic_back">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="30dp"
+                android:layout_height="0dp"
+                android:src="@drawable/ic_back"
+                android:layout_above="@id/pb"
+                android:layout_marginStart="10dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="Case Details"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="19dp"
+                android:layout_toEndOf="@id/imgBack"
+                android:layout_alignParentEnd="true"
+                android:layout_above="@id/pb"
+                android:fontFamily="@font/rounded_bold"
+                android:gravity="center_vertical"
+                android:layout_marginStart="17dp"/>
+            <ProgressBar
+                android:id="@+id/pb"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:progressTint="#053351"
+                android:progressBackgroundTint="@color/white"
+                android:progress="25"/>
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="28dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CaseId*"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rounded_bold"
+                android:layout_marginTop="15dp" />
+
+            <EditText
+                android:id="@+id/etCaseId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="CaseId"
+                android:fontFamily="@font/rounded_medium"
+                android:layout_marginTop="10dp"
+                android:padding="12dp"
+                android:background="@drawable/bg_edittext_login"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Case Type*"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rounded_bold"
+                android:layout_marginTop="35dp" />
+
+            <EditText
+                android:id="@+id/etCaseType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Case Type"
+                android:fontFamily="@font/rounded_medium"
+                android:layout_marginTop="10dp"
+                android:padding="12dp"
+                android:background="@drawable/bg_edittext_login"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Date Of Filling*"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rounded_bold"
+                android:layout_marginTop="35dp" />
+
+            <TextView
+                android:id="@+id/tvTapToChooseDateOfFilling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Tap to choose date"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rounded_medium"
+                android:layout_marginTop="10dp"
+                android:drawableEnd="@drawable/ic_datepicker"
+                android:padding="12dp"
+                android:background="@drawable/bg_edittext_login"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rounded_bold"
+                android:layout_marginTop="35dp" />
+
+            <EditText
+                android:id="@+id/etCaseCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Category"
+                android:fontFamily="@font/rounded_medium"
+                android:layout_marginTop="10dp"
+                android:padding="12dp"
+                android:background="@drawable/bg_edittext_login"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Matter Type*"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rounded_bold"
+                android:layout_marginTop="35dp" />
+
+            <RadioGroup
+                android:id="@+id/rgMatterTyp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/rbMatterTypeUrgent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Urgent"/>
+
+                <RadioButton
+                    android:id="@+id/rbMatterTypeOrdinary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ordinary"
+                    android:checked="true"/>
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cause of action*"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rounded_bold"
+                android:layout_marginTop="35dp" />
+
+            <EditText
+                android:id="@+id/etCauseOfAction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Cause of action"
+                android:minLines="3"
+                android:gravity="top"
+                android:fontFamily="@font/rounded_medium"
+                android:layout_marginTop="10dp"
+                android:padding="12dp"
+                android:background="@drawable/bg_edittext_login"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Act*"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rounded_bold"
+                android:layout_marginTop="35dp" />
+
+            <EditText
+                android:id="@+id/etCaseAct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Act"
+                android:fontFamily="@font/rounded_medium"
+                android:layout_marginTop="10dp"
+                android:padding="12dp"
+                android:background="@drawable/bg_edittext_login"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Act Section*"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rounded_bold"
+                android:layout_marginTop="35dp" />
+
+            <EditText
+                android:id="@+id/etCaseActSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Act Section"
+                android:fontFamily="@font/rounded_medium"
+                android:layout_marginTop="10dp"
+                android:padding="12dp"
+                android:background="@drawable/bg_edittext_login"/>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnNext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_button_login"
+                android:text="NEXT"
+                android:textSize="20dp"
+                android:fontFamily="@font/rounded_bold"
+                android:textColor="@color/white"
+                android:layout_below="@id/etJudgeName"
+                android:layout_marginHorizontal="95dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginBottom="40dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
