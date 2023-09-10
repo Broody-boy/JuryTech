@@ -10,19 +10,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.lawdcm.R
 import com.example.lawdcm.adapters.JudgesAdapter
 import com.example.lawdcm.databinding.AddNewJudgeDialogBinding
 import com.example.lawdcm.databinding.FragmentJudgeBinding
-import com.example.lawdcm.models.judgeDetails
+import com.example.lawdcm.models.JudgeDetails
 import com.example.lawdcm.singleton.ActiveJudges
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DatabaseReference
@@ -54,7 +51,6 @@ class JudgeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentJudgeBinding.inflate(layoutInflater, container, false)
-        dialogBinding = AddNewJudgeDialogBinding.inflate(layoutInflater)
         return binding.root
     }
 
@@ -82,6 +78,8 @@ class JudgeFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.P)
     private fun showAddJudgeDialog() {
         val dialog = Dialog(requireActivity())
+
+        dialogBinding = AddNewJudgeDialogBinding.inflate(layoutInflater)
         dialog.setContentView(dialogBinding.root)
         dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
 
@@ -151,7 +149,7 @@ class JudgeFragment : Fragment() {
             task?.addOnSuccessListener {
 
                 val dbReference : DatabaseReference = FirebaseDatabase.getInstance().getReference().child("judges").child(judgeId)
-                dbReference.setValue(judgeDetails(judgeId, judgeName, "DISTRICT", "28398"))
+                dbReference.setValue(JudgeDetails(judgeId, judgeName, "DISTRICT", "28398"))
 
                 snack.dismiss()
                 dialog.dismiss()
