@@ -51,6 +51,9 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    //Glide:
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+
     //circular image view:
     implementation ("com.mikhaellopez:circularimageview:4.3.1")
 
