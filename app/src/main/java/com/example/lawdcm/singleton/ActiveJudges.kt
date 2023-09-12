@@ -15,6 +15,7 @@ object ActiveJudges {
     }
 
     var activeJudgesList = MutableLiveData<ArrayList<JudgeDetails>>()
+
     private val dbReference = FirebaseDatabase.getInstance().getReference("judges")
 
 

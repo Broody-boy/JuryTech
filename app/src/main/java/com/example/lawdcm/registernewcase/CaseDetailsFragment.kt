@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.lawdcm.R
 import com.example.lawdcm.databinding.FragmentCaseDetailsBinding
 import com.example.lawdcm.models.CaseDetails
+import com.example.lawdcm.singleton.ActiveJudges
 import com.example.lawdcm.viewmodels.RegisterNewCaseViewModel
 import java.util.Calendar
 
@@ -35,6 +36,8 @@ class CaseDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         if(!isAdded) return
+
+        ActiveJudges.getJudgesListFromFirebase("28398")
 
         vmRegisterNewCaseViewModel = ViewModelProvider(requireActivity())[RegisterNewCaseViewModel::class.java]
 
