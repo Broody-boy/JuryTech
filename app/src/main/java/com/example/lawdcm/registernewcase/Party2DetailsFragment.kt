@@ -1,5 +1,6 @@
 package com.example.lawdcm.registernewcase
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.example.lawdcm.R
 import com.example.lawdcm.databinding.FragmentParty2DetailsBinding
 import com.example.lawdcm.models.PartyDetails
 import com.example.lawdcm.viewmodels.RegisterNewCaseViewModel
+import java.util.Calendar
 
 class Party2DetailsFragment : Fragment() {
 
@@ -37,6 +39,23 @@ class Party2DetailsFragment : Fragment() {
         vmRegisterNewCaseViewModel = ViewModelProvider(requireActivity())[RegisterNewCaseViewModel::class.java]
 
         navController = findNavController()
+
+        binding.tvTapToChooseDateOfBirth.setOnClickListener {
+            val c = Calendar.getInstance()
+
+            val datePickerDialog = DatePickerDialog(requireActivity(),{view, year, monthOfYear, dayOfMonth ->
+                val selectedYear = "${year}"
+                var selectedMonth = "${monthOfYear + 1}"
+                var selectedDay = "$dayOfMonth"
+
+                if((monthOfYear + 1) < 10) {   selectedMonth = "0" + selectedMonth }
+                if(dayOfMonth < 10) {   selectedDay = "0" + selectedDay }
+                binding.tvTapToChooseDateOfBirth.text = "${selectedDay}-${selectedMonth}-${selectedYear}"
+                respondentDetails.dateOfBirth= binding.tvTapToChooseDateOfBirth.text.toString()
+            }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH))
+
+            datePickerDialog.show()
+        }
 
         binding.btnNext.setOnClickListener {
             updatePartyDetailsIntoViewModel()

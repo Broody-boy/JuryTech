@@ -2,6 +2,7 @@ package com.example.lawdcm.models
 
 data class CaseDetails(
     var caseId : String? = null,
+    var courtId : String? = null,               //To sort the cases according to courts
     var caseName : String? = null,
     var caseType : String? = null,              //CIVIL or CRIMINAL
     var dateOfFiling : String? = null,

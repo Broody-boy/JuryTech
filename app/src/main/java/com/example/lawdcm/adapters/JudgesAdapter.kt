@@ -1,5 +1,6 @@
 package com.example.lawdcm.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -40,6 +41,7 @@ class JudgesAdapter(val cntxt : Context) : RecyclerView.Adapter<JudgesAdapter.Vi
         .addOnCanceledListener { Toast.makeText(cntxt, "gadbad2", Toast.LENGTH_SHORT).show() }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setjudgeList(list: List<JudgeDetails>) {
         judgesList = list
         notifyDataSetChanged()
