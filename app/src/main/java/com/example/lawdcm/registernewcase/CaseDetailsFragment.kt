@@ -72,7 +72,7 @@ class CaseDetailsFragment : Fragment() {
 
     private fun updateCaseDetailsIntoViewModel() {
         currObj.caseId = binding.etCaseId.text.toString()
-        //currObj.caseName = binding.etCaseName.text.toString()
+        currObj.caseName = binding.etCaseName.text.toString()
         currObj.caseType = binding.etCaseType.text.toString().uppercase()
         currObj.dateOfFiling = binding.tvTapToChooseDateOfFilling.text.toString()
         currObj.caseCategory = binding.etCaseCategory.text.toString()

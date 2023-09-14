@@ -151,6 +151,181 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Religion"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rounded_bold"
+                android:layout_marginTop="35dp" />
+            <EditText
+                android:id="@+id/etReligion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Religion"
+                android:fontFamily="@font/rounded_medium"
+                android:layout_marginTop="10dp"
+                android:padding="12dp"
+                android:background="@drawable/bg_edittext_login"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Caste"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rounded_bold"
+                android:layout_marginTop="35dp" />
+            <EditText
+                android:id="@+id/etCaste"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Relative Name"
+                android:fontFamily="@font/rounded_medium"
+                android:layout_marginTop="10dp"
+                android:padding="12dp"
+                android:background="@drawable/bg_edittext_login"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="EmailId"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rounded_bold"
+                android:layout_marginTop="35dp" />
+            <EditText
+                android:id="@+id/etEmailId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Relative Name"
+                android:fontFamily="@font/rounded_medium"
+                android:layout_marginTop="10dp"
+                android:padding="12dp"
+                android:background="@drawable/bg_edittext_login"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phone number"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rounded_bold"
+                android:layout_marginTop="35dp" />
+            <EditText
+                android:id="@+id/etPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone Number"
+                android:fontFamily="@font/rounded_medium"
+                android:layout_marginTop="10dp"
+                android:padding="12dp"
+                android:background="@drawable/bg_edittext_login"
+                android:maxLength="10"
+                android:inputType="number"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rounded_bold"
+                android:layout_marginTop="35dp" />
+            <EditText
+                android:id="@+id/etCompleteAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Complete Address"
+                android:fontFamily="@font/rounded_medium"
+                android:layout_marginTop="10dp"
+                android:padding="12dp"
+                android:background="@drawable/bg_edittext_login"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="State"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rounded_bold"
+                android:layout_marginTop="35dp" />
+            <EditText
+                android:id="@+id/etState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="State"
+                android:fontFamily="@font/rounded_medium"
+                android:layout_marginTop="10dp"
+                android:padding="12dp"
+                android:background="@drawable/bg_edittext_login"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="District"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rounded_bold"
+                android:layout_marginTop="35dp" />
+            <EditText
+                android:id="@+id/etDistrict"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Relative Name"
+                android:fontFamily="@font/rounded_medium"
+                android:layout_marginTop="10dp"
+                android:padding="12dp"
+                android:background="@drawable/bg_edittext_login"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Taluka"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rounded_bold"
+                android:layout_marginTop="35dp" />
+            <EditText
+                android:id="@+id/etTaluka"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Taluka"
+                android:fontFamily="@font/rounded_medium"
+                android:layout_marginTop="10dp"
+                android:padding="12dp"
+                android:background="@drawable/bg_edittext_login"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pin Code"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rounded_bold"
+                android:layout_marginTop="35dp" />
+            <EditText
+                android:id="@+id/etPinCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Pin Code"
+                android:fontFamily="@font/rounded_medium"
+                android:layout_marginTop="10dp"
+                android:padding="12dp"
+                android:background="@drawable/bg_edittext_login"
+                android:inputType="number"/>
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="Relative Name"
                 android:textSize="18sp"
                 android:textColor="@color/black"

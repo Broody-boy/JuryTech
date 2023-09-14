@@ -84,6 +84,25 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Case Name*"
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/rounded_bold"
+                android:layout_marginTop="15dp" />
+
+            <EditText
+                android:id="@+id/etCaseName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Case Name"
+                android:fontFamily="@font/rounded_medium"
+                android:layout_marginTop="10dp"
+                android:padding="12dp"
+                android:background="@drawable/bg_edittext_login"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:text="Case Type*"
                 android:textSize="18sp"
                 android:textColor="@color/black"

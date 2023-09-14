@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/rounded_bold"
         android:textColor="#0D5EF9"
-        android:text="TechLaw"
+        android:text="JuryTech"
         android:textSize="45dp"
         android:textStyle="bold"
         android:layout_centerHorizontal="true"
