@@ -69,7 +69,7 @@ class Party2DetailsFragment : Fragment() {
             .checkedRadioButtonId).text.toString()
         respondentDetails.relativeName = binding.etRelativeName.text.toString()
         respondentDetails.relativeRelation = binding.etRelativeRelation.text.toString()
-        /*respondentDetails.religion = binding.etReligion.text.toString()
+        respondentDetails.religion = binding.etReligion.text.toString()
         respondentDetails.caste = binding.etCaste.text.toString()
         respondentDetails.contact.emailId = binding.etEmailId.text.toString()
         respondentDetails.contact.phoneNumber = binding.etPhoneNumber.text.toString()
@@ -77,7 +77,7 @@ class Party2DetailsFragment : Fragment() {
         respondentDetails.address.state = binding.etState.text.toString()
         respondentDetails.address.district = binding.etDistrict.text.toString()
         respondentDetails.address.taluka = binding.etTaluka.text.toString()
-        respondentDetails.address.pinCode = binding.etPinCode.text.toString()*/
+        respondentDetails.address.pinCode = binding.etPinCode.text.toString()
         respondentDetails.associatedCaseId = vmRegisterNewCaseViewModel.caseDetailsCollectionObject.caseId
 
         vmRegisterNewCaseViewModel.respondentDetails = respondentDetails
