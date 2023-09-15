@@ -49,8 +49,7 @@ class JudgeDetailsFragment : Fragment() {
         
         
 
-        
-        vmRegisterNewCaseViewModel = ViewModelProvider(requireActivity())[RegisterNewCaseViewModel::class.java]
+
         
         
         
