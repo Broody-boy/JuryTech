@@ -21,6 +21,7 @@ import com.example.lawdcm.databinding.AddNewJudgeDialogBinding
 import com.example.lawdcm.databinding.FragmentJudgeBinding
 import com.example.lawdcm.models.JudgeDetails
 import com.example.lawdcm.singleton.ActiveJudges
+import com.example.lawdcm.singleton.registrarLoggedIn
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -149,7 +150,7 @@ class JudgeFragment : Fragment() {
             task?.addOnSuccessListener {
 
                 val dbReference : DatabaseReference = FirebaseDatabase.getInstance().getReference().child("judges").child(judgeId)
-                dbReference.setValue(JudgeDetails(judgeId, judgeName, "DISTRICT", "28398"))
+                dbReference.setValue(JudgeDetails(judgeId, judgeName, registrarLoggedIn.courtType, registrarLoggedIn.courtId))
 
                 snack.dismiss()
                 dialog.dismiss()
