@@ -44,7 +44,7 @@ object Utils {
         })
     }
 
-    fun populateCasesIntoViewModel(cntxt: Context , courtId : String){
+    fun populateCasesIntoViewModel(courtId : String, callback: (ArrayList<CaseDetails>) -> Unit){
         val dbreference = FirebaseDatabase.getInstance().getReference("caseDetails").child(courtId).child("newCases")
 
         dbreference.addValueEventListener(object : ValueEventListener{
@@ -53,10 +53,7 @@ object Utils {
                 for(snpsht in snapshot.children) {
                     tmplist.add(snpsht.getValue(CaseDetails::class.java)!!)
                 }
-
-                val vmAllCasesViewModel = ViewModelProvider(cntxt as ViewModelStoreOwner)[AllCasesViewModel::class.java]
-
-                vmAllCasesViewModel.listOfAllCases.postValue(tmplist)
+                callback(tmplist)
             }
 
             override fun onCancelled(error: DatabaseError) {

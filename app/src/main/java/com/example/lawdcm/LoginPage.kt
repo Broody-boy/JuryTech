@@ -29,13 +29,14 @@ class LoginPage : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         Paper.init(applicationContext)
 
-        if(auth.currentUser != null && !Paper.book().read<String>("loggedInRegistrarId").isNullOrEmpty()) {
+        if(auth.currentUser != null) {
+
+            val StoredRegistrarId : String = Paper.book().read("loggedInRegistrarId")!!
 
             startActivity(Intent(this@LoginPage, MainActivity::class.java))
-            Utils.loadLoggedInRegistrarDetails(Paper.book().read<String>("loggedInRegistrarId")!! , object : Utils.LoggedInRegistrarDetailsCallBack{
+            Utils.loadLoggedInRegistrarDetails(StoredRegistrarId , object : Utils.LoggedInRegistrarDetailsCallBack{
                 override fun onRegistrarDetailsFetched(registrar: RegistrarAuth) {
                     Utils.getJudgesListFromFirebase(registrarLoggedIn.courtId)
-                    Utils.populateCasesIntoViewModel(applicationContext , registrarLoggedIn.courtId)
                 }
 
                 override fun onRegistrarNotFound() {
@@ -67,10 +68,11 @@ class LoginPage : AppCompatActivity() {
                         val data = snapshot.getValue(RegistrarAuth::class.java)
 
                         if (data != null) {
-                            if(courtId.text.toString() == data.officialEmail &&
+                            if(courtId.text.toString() == data.courtId &&
                                 passKey.text.toString() == data.passKey
                                 && courtType == data.courtType){
 
+                                Paper.book().write("loggedInRegistrarId", binding.etRegistrarId.text.toString())
                                 auth.signInWithEmailAndPassword(data.officialEmail!!, passKey.text.toString())
                                 startActivity(Intent(this@LoginPage , MainActivity::class.java))
                                 finish()

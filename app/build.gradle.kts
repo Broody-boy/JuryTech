@@ -68,7 +68,11 @@ dependencies {
     //firebase storage
     implementation("com.google.firebase:firebase-storage:20.2.1")
 
-    //paperDB
+    //retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
 
+    //paperDB
     implementation ("io.github.pilgr:paperdb:2.7.2")
 }

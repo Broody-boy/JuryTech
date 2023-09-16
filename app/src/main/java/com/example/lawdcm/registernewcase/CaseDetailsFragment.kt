@@ -37,7 +37,7 @@ class CaseDetailsFragment : Fragment() {
 
         if(!isAdded) return
 
-        ActiveJudges.getJudgesListFromFirebase("28398")
+        //ActiveJudges.getJudgesListFromFirebase("28398")
 
         vmRegisterNewCaseViewModel = ViewModelProvider(requireActivity())[RegisterNewCaseViewModel::class.java]
 
