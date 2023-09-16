@@ -122,7 +122,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLayoutEmail"
+            android:id="@+id/inputLayoutCourtId"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
@@ -132,7 +132,7 @@
             android:layout_marginBottom="20dp"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
-            android:hint="Official Email ID"
+            android:hint="Court Id"
             android:textColorHint="#a3aeb4"
             app:hintTextColor="#475a69">
             <EditText
@@ -156,7 +156,7 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             app:endIconMode="clear_text"
             app:endIconDrawable="@drawable/close"
-            android:layout_below="@id/inputLayoutEmail"
+            android:layout_below="@id/inputLayoutCourtId"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
             android:hint="PASSKEY"
