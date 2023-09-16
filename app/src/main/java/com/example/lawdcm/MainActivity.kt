@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.example.lawdcm.bottomnav.AllCasesFragment
 import com.example.lawdcm.bottomnav.JudgeFragment
 import com.example.lawdcm.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val judgeFragment = JudgeFragment()
+        val allCasesFragment = AllCasesFragment()
 
         val navView: BottomNavigationView = binding.navViewBottom
 
@@ -29,6 +31,10 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.menu_item_register_new_case -> {
                     startActivity(Intent(this@MainActivity, RegisterNewCaseActivity::class.java))
+                }
+
+                R.id.menu_item_currentCases -> {
+                    setFragment(allCasesFragment)
                 }
             }
             true

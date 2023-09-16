@@ -46,11 +46,10 @@ class JudgeDetailsFragment : Fragment() {
         }
         val adapterJudgeName = ArrayAdapter(requireActivity(), R.layout.auto_textview , judgeNameList)
         binding.spinnerJudge.adapter = adapterJudgeName
-        
-        
 
-        
         vmRegisterNewCaseViewModel = ViewModelProvider(requireActivity())[RegisterNewCaseViewModel::class.java]
+
+
         
         
         
