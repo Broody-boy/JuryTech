@@ -7,17 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelStoreOwner
-import com.example.lawdcm.R
 import com.example.lawdcm.Utils
-import com.example.lawdcm.adapters.CasesAdapter
+import com.example.lawdcm.adapters.AllCasesAdapter
 import com.example.lawdcm.databinding.FragmentAllCasesBinding
 import com.example.lawdcm.viewmodels.AllCasesViewModel
 
 class AllCasesFragment : Fragment() {
 
     private lateinit var binding : FragmentAllCasesBinding
-    private lateinit var adapter : CasesAdapter
+    private lateinit var adapter : AllCasesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +28,7 @@ class AllCasesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = CasesAdapter(requireActivity())
+        adapter = AllCasesAdapter(requireActivity())
         binding.rvCases.adapter = adapter
         Utils.populateCasesIntoViewModel(requireActivity())
 

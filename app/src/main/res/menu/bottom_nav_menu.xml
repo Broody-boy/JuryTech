@@ -18,9 +18,9 @@
 
 
     <item
-        android:id="@+id/menu_item_currentCases"
+        android:id="@+id/menu_item_allCases"
         android:icon="@drawable/ic_gavel_selector"
-        android:title="Current cases" />
+        android:title="All cases" />
 
     <item
         android:id="@+id/menu_item_profile"

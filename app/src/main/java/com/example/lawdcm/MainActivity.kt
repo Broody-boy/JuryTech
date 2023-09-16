@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this@MainActivity, RegisterNewCaseActivity::class.java))
                 }
 
-                R.id.menu_item_currentCases -> {
+                R.id.menu_item_allCases -> {
                     setFragment(allCasesFragment)
                 }
             }

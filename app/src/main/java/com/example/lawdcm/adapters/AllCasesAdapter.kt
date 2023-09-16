@@ -7,15 +7,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.lawdcm.databinding.ItemCaseBinding
 import com.example.lawdcm.databinding.ItemCasesBinding
-import com.example.lawdcm.databinding.ItemJudgeDetailBinding
 import com.example.lawdcm.models.CaseDetails
-import com.example.lawdcm.models.JudgeDetails
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
-class CasesAdapter(val cntxt : Context) : RecyclerView.Adapter<CasesAdapter.ViewHolder>() {
+class AllCasesAdapter(val cntxt : Context) : RecyclerView.Adapter<AllCasesAdapter.ViewHolder>() {
 
     val storageRef: StorageReference = FirebaseStorage.getInstance().reference
     lateinit var binding : ItemCasesBinding
