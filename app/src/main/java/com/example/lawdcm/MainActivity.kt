@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.example.lawdcm.bottomnav.AllCasesFragment
 import com.example.lawdcm.bottomnav.JudgeFragment
 import com.example.lawdcm.databinding.ActivityMainBinding
+import com.example.lawdcm.singleton.registrarLoggedIn
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -26,15 +27,19 @@ class MainActivity : AppCompatActivity() {
         navView.setOnItemSelectedListener {
             when(it.itemId) {
                 R.id.menu_item_judges -> {
-                    setFragment(judgeFragment)
+                    registrarLoggedIn.dataFetchComplete.observe(this){b->
+                        if(b && navView.selectedItemId == R.id.menu_item_judges) setFragment(judgeFragment)
+                    }
                 }
-
                 R.id.menu_item_register_new_case -> {
-                    startActivity(Intent(this@MainActivity, RegisterNewCaseActivity::class.java))
+                    registrarLoggedIn.dataFetchComplete.observe(this){b->
+                        if(b && navView.selectedItemId == R.id.menu_item_register_new_case ) startActivity(Intent(this@MainActivity, RegisterNewCaseActivity::class.java))
+                    }
                 }
-
                 R.id.menu_item_allCases -> {
-                    setFragment(allCasesFragment)
+                    registrarLoggedIn.dataFetchComplete.observe(this){b->
+                        if(b && navView.selectedItemId == R.id.menu_item_allCases) setFragment(allCasesFragment)
+                    }
                 }
             }
             true

@@ -30,11 +30,10 @@ class AllCasesFragment : Fragment() {
 
         adapter = AllCasesAdapter(requireActivity())
         binding.rvCases.adapter = adapter
-        Utils.populateCasesIntoViewModel(requireActivity())
 
         val vmAllCasesViewModel = ViewModelProvider(requireActivity())[AllCasesViewModel::class.java]
         vmAllCasesViewModel.listOfAllCases.observe(viewLifecycleOwner, Observer {
-            if(!isAdded) return@Observer
+            if(!isAdded || it.isEmpty()) return@Observer
 
             adapter.setcaseList(it)
         })

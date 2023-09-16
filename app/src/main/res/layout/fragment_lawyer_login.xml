@@ -60,7 +60,7 @@
             android:textColorHint="#a3aeb4"
             app:hintTextColor="#475a69">
             <EditText
-                android:id="@+id/etEmail"
+                android:id="@+id/etCourtId"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="text"
