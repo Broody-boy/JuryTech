@@ -6,11 +6,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object BasePriorityInstance {
+object RetrofitClientInstance {
     private var retrofitInstance : Retrofit? = null
-    private val BASE_URL : String = "http://ec2-13-51-150-26.eu-north-1.compute.amazonaws.com:8080"
+    private val BASE_URL : String = "http://ec2-16-16-26-152.eu-north-1.compute.amazonaws.com:8080/"
 
-    fun getBasePriority() : Retrofit {
+    fun getClient() : Retrofit {
         if(retrofitInstance == null) {
             val logging = HttpLoggingInterceptor()
             logging.setLevel(HttpLoggingInterceptor.Level.BODY)

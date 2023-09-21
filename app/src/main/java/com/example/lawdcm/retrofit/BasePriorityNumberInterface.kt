@@ -6,10 +6,11 @@ import retrofit2.Response
 import retrofit2.http.Query
 
 interface BasePriorityNumberInterface {
-    @GET("/predict")
+    @GET("/predictGrp")
     fun getBasePriority(
-        @Query("stateCode") stateCode : Int,
-        @Query("caseTypeId") caseTypeId : Int,
-        @Query("judgeLabel") judgeLabel : Int
+        @Query("state_code") stateCode : String,
+        @Query("dist_code") distcode : String,
+        @Query("type_name") caseTypeId : String,
+        @Query("judge_labels") judgeLabel : String
     ) : Call<ApiResponse>
 }

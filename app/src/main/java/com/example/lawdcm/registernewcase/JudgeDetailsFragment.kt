@@ -1,6 +1,7 @@
 package com.example.lawdcm.registernewcase
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,10 +12,18 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.lawdcm.R
 import com.example.lawdcm.databinding.FragmentJudgeDetailsBinding
 import com.example.lawdcm.models.JudgeDetails
+import com.example.lawdcm.retrofit.ApiResponse
+import com.example.lawdcm.retrofit.BasePriorityNumberInterface
+import com.example.lawdcm.retrofit.RetrofitClientInstance
 import com.example.lawdcm.singleton.ActiveJudges
 import com.example.lawdcm.viewmodels.RegisterNewCaseViewModel
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.create
 
 import kotlin.collections.ArrayList
 
@@ -56,6 +65,8 @@ class JudgeDetailsFragment : Fragment() {
         
 
         binding.btnAddToCasePool.setOnClickListener {
+
+            getCasePriority()
             var curJudge = alljudges.get(binding.spinnerJudge.selectedItemPosition)
             
             vmRegisterNewCaseViewModel.caseDetailsCollectionObject.judge = curJudge
@@ -80,6 +91,30 @@ class JudgeDetailsFragment : Fragment() {
 
 
         }
+    }
+
+    private fun getCasePriority() {
+        val api = RetrofitClientInstance.getClient().create(BasePriorityNumberInterface::class.java)
+        val call = api.getBasePriority("13" , "46" , "5979" ,"75")
+        call.enqueue(object : Callback<ApiResponse>{
+            override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
+                if (response.isSuccessful){
+                    val result = response.body()
+                    Toast.makeText(requireActivity(), "${result!!.daysGroup} + ${result!!.lagGroup}", Toast.LENGTH_SHORT).show()
+
+                    Log.d("response" ,"${result!!.daysGroup} + ${result!!.lagGroup}" )
+                }else{
+                    Toast.makeText(requireActivity(), "Response Invalid", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                Toast.makeText(requireActivity(), t.localizedMessage, Toast.LENGTH_SHORT).show()
+                Log.d("error" ,t.localizedMessage )
+            }
+
+        })
+        Toast.makeText(requireActivity(), "inside the function", Toast.LENGTH_SHORT).show()
     }
 
     private fun updateJudgeAssignedCaseIds(curJudge: JudgeDetails, caseId: String) {
