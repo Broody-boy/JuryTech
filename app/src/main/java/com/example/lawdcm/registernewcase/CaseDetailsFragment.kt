@@ -1,5 +1,6 @@
 package com.example.lawdcm.registernewcase
 
+import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,7 +14,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.lawdcm.R
 import com.example.lawdcm.databinding.FragmentCaseDetailsBinding
 import com.example.lawdcm.models.CaseDetails
-import com.example.lawdcm.singleton.ActiveJudges
 import com.example.lawdcm.viewmodels.RegisterNewCaseViewModel
 import java.util.Calendar
 
@@ -32,6 +32,7 @@ class CaseDetailsFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -51,7 +52,7 @@ class CaseDetailsFragment : Fragment() {
 
                 if((monthOfYear + 1) < 10) {   selectedMonth = "0" + selectedMonth }
                 if(dayOfMonth < 10) {   selectedDay = "0" + selectedDay }
-                binding.tvTapToChooseDateOfFilling.text = "${selectedDay}-${selectedMonth}-${selectedYear}"
+                binding.tvTapToChooseDateOfFilling.text = "${selectedYear}-${selectedMonth}-${selectedDay}"
                 currObj.dateOfFiling = binding.tvTapToChooseDateOfFilling.text.toString()
             }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH))
 

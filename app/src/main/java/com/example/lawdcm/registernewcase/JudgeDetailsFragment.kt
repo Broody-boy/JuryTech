@@ -1,5 +1,6 @@
 package com.example.lawdcm.registernewcase
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,8 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import com.example.lawdcm.R
+import com.example.lawdcm.Utils
 import com.example.lawdcm.databinding.FragmentJudgeDetailsBinding
 import com.example.lawdcm.models.JudgeDetails
 import com.example.lawdcm.retrofit.ApiResponse
@@ -33,6 +36,7 @@ class JudgeDetailsFragment : Fragment() {
     private lateinit var vmRegisterNewCaseViewModel: RegisterNewCaseViewModel
     private var judgeNameList : ArrayList<String> = ArrayList()
     private val dbRef : DatabaseReference = FirebaseDatabase.getInstance().getReference()
+    private var priority : Double? = null
     
 
     override fun onCreateView(
@@ -97,11 +101,28 @@ class JudgeDetailsFragment : Fragment() {
         val api = RetrofitClientInstance.getClient().create(BasePriorityNumberInterface::class.java)
         val call = api.getBasePriority("13" , "46" , "5979" ,"75")
         call.enqueue(object : Callback<ApiResponse>{
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
                 if (response.isSuccessful){
                     val result = response.body()
                     Toast.makeText(requireActivity(), "${result!!.daysGroup} + ${result!!.lagGroup}", Toast.LENGTH_SHORT).show()
 
+                    val caseType = vmRegisterNewCaseViewModel.caseDetailsCollectionObject.caseType
+                    val importance = vmRegisterNewCaseViewModel.caseDetailsCollectionObject.matterType
+                    val age = vmRegisterNewCaseViewModel.caseDetailsCollectionObject.dateOfFiling
+                    priority = Utils.getFinalPriority(result.daysGroup!! , result.lagGroup!! , caseType!! , importance!! , age!!)
+
+                    if(priority!! > 1.5){
+                        vmRegisterNewCaseViewModel.caseDetailsCollectionObject.priorityCategory = "NEW_HIGH"
+                    }else{
+                        vmRegisterNewCaseViewModel.caseDetailsCollectionObject.priorityCategory = "NEW_LOW"
+                    }
+                    vmRegisterNewCaseViewModel.caseDetailsCollectionObject.priorityNumber = priority!!
+
+                    Toast.makeText(requireActivity(), "Final priority $priority", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireActivity(), "Final priority ${vmRegisterNewCaseViewModel.caseDetailsCollectionObject.priorityCategory}", Toast.LENGTH_SHORT).show()
+                    Log.d("response1" ,"Final priority $priority")
+                    Log.d("response1" ,"Final priority ${vmRegisterNewCaseViewModel.caseDetailsCollectionObject.priorityCategory}")
                     Log.d("response" ,"${result!!.daysGroup} + ${result!!.lagGroup}" )
                 }else{
                     Toast.makeText(requireActivity(), "Response Invalid", Toast.LENGTH_SHORT).show()
