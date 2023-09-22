@@ -7,17 +7,6 @@
     tools:context=".LoginPage"
     android:background="@drawable/waves">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_back"
-        android:drawableTint="@color/black"
-        android:text="Back"
-        android:textSize="18dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="17dp" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
