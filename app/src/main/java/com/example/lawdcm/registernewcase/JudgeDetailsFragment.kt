@@ -71,23 +71,6 @@ class JudgeDetailsFragment : Fragment() {
         binding.btnAddToCasePool.setOnClickListener {
 
             getCasePriority()
-            var curJudge = alljudges.get(binding.spinnerJudge.selectedItemPosition)
-            
-            vmRegisterNewCaseViewModel.caseDetailsCollectionObject.judge = curJudge
-
-            Toast.makeText(requireActivity(), "$curJudge", Toast.LENGTH_SHORT).show()
-
-            var dbRefCaseDetails = dbRef.child("caseDetails").child(curJudge.courtId!!).child("newCases")
-            dbRefCaseDetails.child(vmRegisterNewCaseViewModel.caseDetailsCollectionObject.caseId!!).setValue(vmRegisterNewCaseViewModel.caseDetailsCollectionObject)
-                .addOnCompleteListener {
-                    Toast.makeText(requireActivity(), "Case Uploaded", Toast.LENGTH_SHORT).show()
-                    updateJudgeAssignedCaseIds(curJudge , vmRegisterNewCaseViewModel.caseDetailsCollectionObject.caseId!!)
-                }.addOnFailureListener {
-                    Toast.makeText(requireActivity(), "Try Again Later", Toast.LENGTH_SHORT).show()
-                    return@addOnFailureListener
-
-                }
-
 
 
 
@@ -95,6 +78,27 @@ class JudgeDetailsFragment : Fragment() {
 
 
         }
+    }
+
+    private fun uploadDetailsIntoFirebase() {
+
+        val alljudges  = ActiveJudges.activeJudgesList.value
+        var curJudge = alljudges!!.get(binding.spinnerJudge.selectedItemPosition)
+
+        vmRegisterNewCaseViewModel.caseDetailsCollectionObject.judge = curJudge
+
+        Toast.makeText(requireActivity(), "$curJudge", Toast.LENGTH_SHORT).show()
+
+        var dbRefCaseDetails = dbRef.child("caseDetails").child(curJudge.courtId!!).child("newCases")
+        dbRefCaseDetails.child(vmRegisterNewCaseViewModel.caseDetailsCollectionObject.caseId!!).setValue(vmRegisterNewCaseViewModel.caseDetailsCollectionObject)
+            .addOnCompleteListener {
+                Toast.makeText(requireActivity(), "Case Uploaded", Toast.LENGTH_SHORT).show()
+                updateJudgeAssignedCaseIds(curJudge , vmRegisterNewCaseViewModel.caseDetailsCollectionObject.caseId!!)
+            }.addOnFailureListener {
+                Toast.makeText(requireActivity(), "Try Again Later", Toast.LENGTH_SHORT).show()
+                return@addOnFailureListener
+
+            }
     }
 
     private fun getCasePriority() {
@@ -124,6 +128,8 @@ class JudgeDetailsFragment : Fragment() {
                     Log.d("response1" ,"Final priority $priority")
                     Log.d("response1" ,"Final priority ${vmRegisterNewCaseViewModel.caseDetailsCollectionObject.priorityCategory}")
                     Log.d("response" ,"${result!!.daysGroup} + ${result!!.lagGroup}" )
+
+                    uploadDetailsIntoFirebase()
                 }else{
                     Toast.makeText(requireActivity(), "Response Invalid", Toast.LENGTH_SHORT).show()
                 }
