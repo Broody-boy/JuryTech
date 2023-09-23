@@ -8,5 +8,5 @@ data class JudgeDetails (
     var judgeName : String? = null,
     var courtType : String? = null,
     var courtId : String? = null,
-    var assignedCases : ArrayList<String> = arrayListOf()
+    var assignedCases : HashMap<String, Any> = HashMap()
 )

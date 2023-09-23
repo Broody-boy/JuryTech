@@ -29,7 +29,7 @@ class AllCasesAdapter(val cntxt : Context) : RecyclerView.Adapter<AllCasesAdapte
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val caseDetailInHand = casesList[position]
-        holder.tvJudgeName.text = caseDetailInHand.judge!!.judgeName
+        holder.tvJudgeName.text = caseDetailInHand.judgeName
         holder.tvCaseId.text = caseDetailInHand.caseId
         holder.tvCaseName.text = caseDetailInHand.caseName
         holder.tvCaseActSection.text = "Act " + caseDetailInHand.caseAct + " Section " + caseDetailInHand.caseActSection
@@ -37,7 +37,7 @@ class AllCasesAdapter(val cntxt : Context) : RecyclerView.Adapter<AllCasesAdapte
         holder.tvCaseCategory.text = caseDetailInHand.caseCategory
         //holder.tvJudgeId.text = judgeDetailInHand.judgeId
 
-        storageRef.child("judgeProfile").child("${caseDetailInHand.judge!!.judgeId!!}.jpg")
+        storageRef.child("judgeProfile").child("${caseDetailInHand.judgeId}.jpg")
             .downloadUrl.addOnSuccessListener {
                 Toast.makeText(cntxt, "$it", Toast.LENGTH_SHORT).show()
                 Glide.with(cntxt).load(it).into(holder.imgJudge)
@@ -47,7 +47,7 @@ class AllCasesAdapter(val cntxt : Context) : RecyclerView.Adapter<AllCasesAdapte
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setcaseList(list: List<CaseDetails>) {
+    fun setCaseList(list: List<CaseDetails>) {
         casesList = list
         notifyDataSetChanged()
     }
