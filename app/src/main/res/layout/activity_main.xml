@@ -30,6 +30,74 @@
         app:itemTextAppearanceActive="@color/black"
         app:itemTextAppearanceInactive="@color/dark_gray"
         app:itemActiveIndicatorStyle="@android:color/transparent"
-        app:itemRippleColor="@null" />
+        app:itemRippleColor="@null"
+        android:visibility="gone"/>
+
+    <FrameLayout
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@drawable/round_dome_bottom_nav_main_activity"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#eef0f2"
+            android:layout_marginTop="30dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@android:color/transparent"
+            android:paddingHorizontal="15dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="27dp"
+                android:src="@drawable/ic_home"
+                app:tint="#bbbbbd"/>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="27dp"
+                android:src="@drawable/ic_judge"
+                app:tint="#bbbbbd"
+                android:layout_marginEnd="10dp"/>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/plus" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="27dp"
+                android:src="@drawable/ic_cases"
+                app:tint="#bbbbbd"
+                android:layout_marginStart="10dp"/>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="27dp"
+                android:src="@drawable/ic_profile"
+                app:tint="#bbbbbd"/>
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

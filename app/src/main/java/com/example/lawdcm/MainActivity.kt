@@ -6,7 +6,9 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.lawdcm.bottomnav.AllCasesFragment
+import com.example.lawdcm.bottomnav.DashBoardFragment
 import com.example.lawdcm.bottomnav.JudgeFragment
+import com.example.lawdcm.bottomnav.ProfileFragment
 import com.example.lawdcm.databinding.ActivityMainBinding
 import com.example.lawdcm.singleton.registrarLoggedIn
 import com.example.lawdcm.viewmodels.AllCasesViewModel
@@ -32,10 +34,16 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+        val dashboardFragment = DashBoardFragment()
         val judgeFragment = JudgeFragment()
         val allCasesFragment = AllCasesFragment()
+        val profileFragment = ProfileFragment()
 
         val navView: BottomNavigationView = binding.navViewBottom
+
+
+        setFragment(profileFragment)
+
 
         navView.setOnItemSelectedListener {
             when(it.itemId) {
