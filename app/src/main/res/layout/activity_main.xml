@@ -60,6 +60,7 @@
             android:layout_marginTop="30dp">
 
             <ImageView
+                android:id="@+id/imgHome"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="27dp"
@@ -67,6 +68,7 @@
                 app:tint="#bbbbbd"/>
 
             <ImageView
+                android:id="@+id/imgAllJudges"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="27dp"
@@ -75,11 +77,13 @@
                 android:layout_marginEnd="10dp"/>
 
             <ImageView
+                android:id="@+id/imgAddCase"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/plus" />
 
             <ImageView
+                android:id="@+id/imgCases"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="27dp"
@@ -88,6 +92,7 @@
                 android:layout_marginStart="10dp"/>
 
             <ImageView
+                android:id="@+id/imgProfile"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="27dp"

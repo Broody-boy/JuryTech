@@ -42,31 +42,87 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navViewBottom
 
 
-        setFragment(allCasesFragment)
+        setFragment(dashboardFragment)
 
-
-        navView.setOnItemSelectedListener {
-            when(it.itemId) {
-                R.id.menu_item_judges -> {
-                    registrarLoggedIn.dataFetchComplete.observe(this){b->
-                        //if(b && navView.selectedItemId == R.id.menu_item_judges) setFragment(judgeFragment)
-                    }
-                    setFragment(judgeFragment)
-                }
-                R.id.menu_item_register_new_case -> {
-                    registrarLoggedIn.dataFetchComplete.observe(this){b->
-                        if(b && navView.selectedItemId == R.id.menu_item_register_new_case ) startActivity(Intent(this@MainActivity, RegisterNewCaseActivity::class.java))
-                    }
-                }
-                R.id.menu_item_allCases -> {
-                    registrarLoggedIn.dataFetchComplete.observe(this){b->
-                        //if(b && navView.selectedItemId == R.id.menu_item_allCases) setFragment(allCasesFragment)
-                    }
-                    setFragment(allCasesFragment)
-                }
+        var idClicked = 0
+        binding.imgHome.setOnClickListener {
+            if (registrarLoggedIn.dataFetchComplete.value == true){
+                setFragment(dashboardFragment)
+                idClicked = 0
+            }else{
+                idClicked = binding.imgHome.id
             }
-            true
         }
+        binding.imgAllJudges.setOnClickListener {
+            if (registrarLoggedIn.dataFetchComplete.value == true){
+                setFragment(judgeFragment)
+                idClicked = 0
+            }else{
+                idClicked = binding.imgAllJudges.id
+            }
+        }
+        binding.imgAddCase.setOnClickListener {
+            if (registrarLoggedIn.dataFetchComplete.value == true){
+                startActivity(Intent(this@MainActivity , RegisterNewCaseActivity::class.java))
+                idClicked = 0
+            }else{
+                idClicked = binding.imgAddCase.id
+            }
+        }
+        binding.imgCases.setOnClickListener {
+            if (registrarLoggedIn.dataFetchComplete.value == true){
+                setFragment(allCasesFragment)
+                idClicked = 0
+            }else{
+                idClicked = binding.imgCases.id
+            }
+        }
+        binding.imgProfile.setOnClickListener {
+            if (registrarLoggedIn.dataFetchComplete.value == true){
+                setFragment(profileFragment)
+                idClicked = 0
+            }else{
+                idClicked = binding.imgProfile.id
+            }
+        }
+
+        registrarLoggedIn.dataFetchComplete.observe(this){
+            if (it){
+                when(idClicked){
+                    0 -> return@observe
+                    R.id.imgHome -> setFragment(dashboardFragment)
+                    R.id.imgAllJudges -> setFragment(judgeFragment)
+                    R.id.imgAddCase -> startActivity(Intent(this@MainActivity , RegisterNewCaseActivity::class.java))
+                    R.id.imgCases -> setFragment(allCasesFragment)
+                    R.id.imgProfile -> setFragment(profileFragment)
+                }
+                idClicked = 0
+            }
+        }
+
+
+//        navView.setOnItemSelectedListener {
+//            when(it.itemId) {
+//                R.id.menu_item_judges -> {
+//                    registrarLoggedIn.dataFetchComplete.observe(this){b->
+//                        //if(b && navView.selectedItemId == R.id.menu_item_judges) setFragment(judgeFragment)
+//                    }
+//                    setFragment(judgeFragment)
+//                }
+//                R.id.menu_item_register_new_case -> {
+//                    registrarLoggedIn.dataFetchComplete.observe(this){b->
+//                        if(b && navView.selectedItemId == R.id.menu_item_register_new_case ) startActivity(Intent(this@MainActivity, RegisterNewCaseActivity::class.java))
+//                    }
+//                }
+//                R.id.menu_item_allCases -> {
+//                    registrarLoggedIn.dataFetchComplete.observe(this){b->
+//                        //if(b && navView.selectedItemId == R.id.menu_item_allCases) setFragment(allCasesFragment)
+//                    }
+//                    setFragment(allCasesFragment)
+//                }
+//            }
+//            true
+//        }
     }
 
     private fun setFragment(fragment: Fragment) {
