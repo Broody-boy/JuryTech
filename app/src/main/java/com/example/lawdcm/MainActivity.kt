@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navViewBottom
 
 
-        setFragment(profileFragment)
+        setFragment(allCasesFragment)
 
 
         navView.setOnItemSelectedListener {
