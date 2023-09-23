@@ -100,24 +100,24 @@
                 android:padding="12dp"
                 android:background="@drawable/bg_edittext_login"/>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Case Type*"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/rounded_bold"
-                android:layout_marginTop="35dp" />
-
-            <EditText
-                android:id="@+id/etCaseType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Case Type"
-                android:fontFamily="@font/rounded_medium"
-                android:layout_marginTop="10dp"
-                android:padding="12dp"
-                android:background="@drawable/bg_edittext_login"/>
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Case Type"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/rounded_bold"
+                    android:layout_marginTop="15dp"/>
+                <Spinner
+                    android:id="@+id/spinnerCaseType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -141,24 +141,24 @@
                 android:padding="12dp"
                 android:background="@drawable/bg_edittext_login"/>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Category"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/rounded_bold"
-                android:layout_marginTop="35dp" />
-
-            <EditText
-                android:id="@+id/etCaseCategory"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Category"
-                android:fontFamily="@font/rounded_medium"
-                android:layout_marginTop="10dp"
-                android:padding="12dp"
-                android:background="@drawable/bg_edittext_login"/>
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Category"
+                    android:textSize="18sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/rounded_bold"
+                    android:layout_marginTop="15dp"/>
+                <Spinner
+                    android:id="@+id/spinnerCaseCategory"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp" />
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
