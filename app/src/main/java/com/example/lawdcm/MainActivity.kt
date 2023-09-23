@@ -6,7 +6,9 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.lawdcm.bottomnav.AllCasesFragment
+import com.example.lawdcm.bottomnav.DashBoardFragment
 import com.example.lawdcm.bottomnav.JudgeFragment
+import com.example.lawdcm.bottomnav.ProfileFragment
 import com.example.lawdcm.databinding.ActivityMainBinding
 import com.example.lawdcm.singleton.registrarLoggedIn
 import com.example.lawdcm.viewmodels.AllCasesViewModel
@@ -32,33 +34,95 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+        val dashboardFragment = DashBoardFragment()
         val judgeFragment = JudgeFragment()
         val allCasesFragment = AllCasesFragment()
+        val profileFragment = ProfileFragment()
 
         val navView: BottomNavigationView = binding.navViewBottom
 
-        navView.setOnItemSelectedListener {
-            when(it.itemId) {
-                R.id.menu_item_judges -> {
-                    registrarLoggedIn.dataFetchComplete.observe(this){b->
-                        //if(b && navView.selectedItemId == R.id.menu_item_judges) setFragment(judgeFragment)
-                    }
-                    setFragment(judgeFragment)
-                }
-                R.id.menu_item_register_new_case -> {
-                    registrarLoggedIn.dataFetchComplete.observe(this){b->
-                        if(b && navView.selectedItemId == R.id.menu_item_register_new_case ) startActivity(Intent(this@MainActivity, RegisterNewCaseActivity::class.java))
-                    }
-                }
-                R.id.menu_item_allCases -> {
-                    registrarLoggedIn.dataFetchComplete.observe(this){b->
-                        //if(b && navView.selectedItemId == R.id.menu_item_allCases) setFragment(allCasesFragment)
-                    }
-                    setFragment(allCasesFragment)
-                }
+
+        setFragment(dashboardFragment)
+
+        var idClicked = 0
+        binding.imgHome.setOnClickListener {
+            if (registrarLoggedIn.dataFetchComplete.value == true){
+                setFragment(dashboardFragment)
+                idClicked = 0
+            }else{
+                idClicked = binding.imgHome.id
             }
-            true
         }
+        binding.imgAllJudges.setOnClickListener {
+            if (registrarLoggedIn.dataFetchComplete.value == true){
+                setFragment(judgeFragment)
+                idClicked = 0
+            }else{
+                idClicked = binding.imgAllJudges.id
+            }
+        }
+        binding.imgAddCase.setOnClickListener {
+            if (registrarLoggedIn.dataFetchComplete.value == true){
+                startActivity(Intent(this@MainActivity , RegisterNewCaseActivity::class.java))
+                idClicked = 0
+            }else{
+                idClicked = binding.imgAddCase.id
+            }
+        }
+        binding.imgCases.setOnClickListener {
+            if (registrarLoggedIn.dataFetchComplete.value == true){
+                setFragment(allCasesFragment)
+                idClicked = 0
+            }else{
+                idClicked = binding.imgCases.id
+            }
+        }
+        binding.imgProfile.setOnClickListener {
+            if (registrarLoggedIn.dataFetchComplete.value == true){
+                setFragment(profileFragment)
+                idClicked = 0
+            }else{
+                idClicked = binding.imgProfile.id
+            }
+        }
+
+        registrarLoggedIn.dataFetchComplete.observe(this){
+            if (it){
+                when(idClicked){
+                    0 -> return@observe
+                    R.id.imgHome -> setFragment(dashboardFragment)
+                    R.id.imgAllJudges -> setFragment(judgeFragment)
+                    R.id.imgAddCase -> startActivity(Intent(this@MainActivity , RegisterNewCaseActivity::class.java))
+                    R.id.imgCases -> setFragment(allCasesFragment)
+                    R.id.imgProfile -> setFragment(profileFragment)
+                }
+                idClicked = 0
+            }
+        }
+
+
+//        navView.setOnItemSelectedListener {
+//            when(it.itemId) {
+//                R.id.menu_item_judges -> {
+//                    registrarLoggedIn.dataFetchComplete.observe(this){b->
+//                        //if(b && navView.selectedItemId == R.id.menu_item_judges) setFragment(judgeFragment)
+//                    }
+//                    setFragment(judgeFragment)
+//                }
+//                R.id.menu_item_register_new_case -> {
+//                    registrarLoggedIn.dataFetchComplete.observe(this){b->
+//                        if(b && navView.selectedItemId == R.id.menu_item_register_new_case ) startActivity(Intent(this@MainActivity, RegisterNewCaseActivity::class.java))
+//                    }
+//                }
+//                R.id.menu_item_allCases -> {
+//                    registrarLoggedIn.dataFetchComplete.observe(this){b->
+//                        //if(b && navView.selectedItemId == R.id.menu_item_allCases) setFragment(allCasesFragment)
+//                    }
+//                    setFragment(allCasesFragment)
+//                }
+//            }
+//            true
+//        }
     }
 
     private fun setFragment(fragment: Fragment) {

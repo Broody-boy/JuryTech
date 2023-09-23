@@ -5,12 +5,165 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".bottomnav.AllCasesFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:background="@drawable/bg_app_bar">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/modernist_regular"
+            android:text="Today's Cases"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textStyle="bold"
+            android:textSize="28dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="20dp"/>
+
+        <androidx.appcompat.widget.SearchView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/bg_search_bar"
+            android:layout_marginHorizontal="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:hint="Search by Case Name, Respondent, Applicant"
+            />
+
+    </RelativeLayout>
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="10dp"
+        android:scrollbars="none">
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cgCaseCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:singleSelection="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            app:selectionRequired="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipNewHigh"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:textColor="@color/faq_chip_text_color_selector"
+                app:chipBackgroundColor="@color/faq_chip_background_color_selector"
+                app:chipStrokeColor="@color/faq_chip_stroke_color_selector"
+                android:text="New High"
+                android:textSize="19dp"
+                app:chipStrokeWidth="1.7dp"
+                app:chipCornerRadius="11dp"
+                android:checkable="true"
+                android:checked="true"
+                app:checkedIcon="@null"
+                app:chipStartPadding="10dp"
+                app:chipEndPadding="10dp"
+                android:layout_marginHorizontal="2.5dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipNewLow"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:textColor="@color/faq_chip_text_color_selector"
+                app:chipBackgroundColor="@color/faq_chip_background_color_selector"
+                app:chipStrokeColor="@color/faq_chip_stroke_color_selector"
+                android:text="New Low"
+                android:textSize="19dp"
+                app:chipStrokeWidth="1.7dp"
+                app:chipCornerRadius="11dp"
+                android:checkable="true"
+                app:checkedIcon="@null"
+                app:chipStartPadding="10dp"
+                app:chipEndPadding="10dp"
+                android:layout_marginHorizontal="2.5dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipOngoingHigh"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:textColor="@color/faq_chip_text_color_selector"
+                app:chipBackgroundColor="@color/faq_chip_background_color_selector"
+                app:chipStrokeColor="@color/faq_chip_stroke_color_selector"
+                android:text="Ongoing High"
+                android:textSize="19dp"
+                app:chipStrokeWidth="1.7dp"
+                app:chipCornerRadius="11dp"
+                android:checkable="true"
+                app:checkedIcon="@null"
+                app:chipStartPadding="10dp"
+                app:chipEndPadding="10dp"
+                android:layout_marginHorizontal="2.5dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipOngoingLow"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:textColor="@color/faq_chip_text_color_selector"
+                app:chipBackgroundColor="@color/faq_chip_background_color_selector"
+                app:chipStrokeColor="@color/faq_chip_stroke_color_selector"
+                android:text="Ongoing Low"
+                android:textSize="19dp"
+                app:chipStrokeWidth="1.7dp"
+                app:chipCornerRadius="11dp"
+                android:checkable="true"
+                app:checkedIcon="@null"
+                app:chipStartPadding="10dp"
+                app:chipEndPadding="10dp"
+                android:layout_marginHorizontal="2.5dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipOld"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:textColor="@color/faq_chip_text_color_selector"
+                app:chipBackgroundColor="@color/faq_chip_background_color_selector"
+                app:chipStrokeColor="@color/faq_chip_stroke_color_selector"
+                android:text="Old"
+                android:textSize="19dp"
+                app:chipStrokeWidth="1.7dp"
+                app:chipCornerRadius="11dp"
+                android:checkable="true"
+                app:checkedIcon="@null"
+                app:chipStartPadding="10dp"
+                app:chipEndPadding="10dp"
+                android:layout_marginHorizontal="2.5dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipBuffer"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:textColor="@color/faq_chip_text_color_selector"
+                app:chipBackgroundColor="@color/faq_chip_background_color_selector"
+                app:chipStrokeColor="@color/faq_chip_stroke_color_selector"
+                android:text="Buffer"
+                android:textSize="19dp"
+                app:chipStrokeWidth="1.7dp"
+                app:chipCornerRadius="11dp"
+                android:checkable="true"
+                app:checkedIcon="@null"
+                app:chipStartPadding="10dp"
+                app:chipEndPadding="10dp"
+                android:layout_marginHorizontal="2.5dp" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCases"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="40dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 </LinearLayout>

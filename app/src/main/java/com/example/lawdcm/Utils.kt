@@ -1,7 +1,9 @@
 package com.example.lawdcm
 
 import android.content.Context
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
@@ -16,6 +18,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 
 object Utils {
 
@@ -84,6 +88,52 @@ object Utils {
                 Log.d("err2", "err")
             }
         })
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getFinalPriority(
+        daysGroup: String,
+        lagGroup: String,
+        caseType: String,
+        imp: String,
+        dateFiling: String
+    ): Double {
+
+        val age = calculateDaysDifference(dateFiling, getCurrentDate())
+        var typeCase = 0.0
+        typeCase = if (caseType == "CRIMINAL") {
+            2.0
+        } else {
+            1.2
+        }
+        var importance = 0.0
+        importance = if (imp == "ORDINARY") {
+            0.5
+        } else {
+            3.0
+        }
+
+        return (
+                daysGroup.toInt() * 0.2 +
+                lagGroup.toInt() * 0.2 +
+                typeCase * 0.15 +
+                importance * 0.25 +
+                age * 0.2   //0
+                )
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun calculateDaysDifference(startDate: String, endDate: String): Long {
+        val formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val startLocalDate = LocalDate.parse(startDate, formatter)
+        val endLocalDate = LocalDate.parse(endDate, formatter)
+
+        return ChronoUnit.DAYS.between(startLocalDate, endLocalDate)
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getCurrentDate(): String {
+        return LocalDate.now().toString()
     }
 
     interface LoggedInRegistrarDetailsCallBack{

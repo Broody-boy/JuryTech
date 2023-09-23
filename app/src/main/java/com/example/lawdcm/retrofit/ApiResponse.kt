@@ -1,5 +1,10 @@
 package com.example.lawdcm.retrofit
 
+import com.google.gson.annotations.SerializedName
+
 data class ApiResponse(
-    val priority : Int? = null
+    @SerializedName("Days_Group")
+    var daysGroup : String? = null,
+    @SerializedName("Lag_Group")
+    var lagGroup : String? = null
 )
