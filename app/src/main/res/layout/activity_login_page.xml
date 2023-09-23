@@ -148,7 +148,7 @@
             android:layout_below="@id/inputLayoutCourtId"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
-            android:hint="PASSKEY"
+            android:hint="PassKey"
             android:textColorHint="#a3aeb4"
             app:hintTextColor="#475a69">
             <EditText
@@ -170,7 +170,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="19dp"
-            android:text="Forgot your passkey?"
+            android:text="Forgot your PassKey?"
             android:fontFamily="@font/rounded_medium"
             android:layout_below="@id/inputLayoutPassKey"
             android:layout_marginTop="10dp"

@@ -14,6 +14,7 @@ data class CaseDetails(
     var applicantId: String? = null,
     var respondentId: String? = null,
     var priorityCategory: String? = null,      // enum(caps) -> NEW_HIGH/ NEW_LOW/ OLD/ ONGOING_HIGH/ ONGOING_LOW/ Buffer
-    var judge: JudgeDetails? = null,           // this is a separate model class in another file, so see accordingly
+    var judgeId : String? = null,
+    var judgeName : String? = null,
     var priorityNumber: Double = 0.0
 )

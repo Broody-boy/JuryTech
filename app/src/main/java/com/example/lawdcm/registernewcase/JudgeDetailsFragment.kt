@@ -85,7 +85,8 @@ class JudgeDetailsFragment : Fragment() {
         val alljudges  = ActiveJudges.activeJudgesList.value
         var curJudge = alljudges!!.get(binding.spinnerJudge.selectedItemPosition)
 
-        vmRegisterNewCaseViewModel.caseDetailsCollectionObject.judge = curJudge
+        vmRegisterNewCaseViewModel.caseDetailsCollectionObject.judgeId = curJudge.judgeId
+        vmRegisterNewCaseViewModel.caseDetailsCollectionObject.judgeName = curJudge.judgeName
 
         Toast.makeText(requireActivity(), "$curJudge", Toast.LENGTH_SHORT).show()
 
@@ -93,7 +94,7 @@ class JudgeDetailsFragment : Fragment() {
         dbRefCaseDetails.child(vmRegisterNewCaseViewModel.caseDetailsCollectionObject.caseId!!).setValue(vmRegisterNewCaseViewModel.caseDetailsCollectionObject)
             .addOnCompleteListener {
                 Toast.makeText(requireActivity(), "Case Uploaded", Toast.LENGTH_SHORT).show()
-                updateJudgeAssignedCaseIds(curJudge , vmRegisterNewCaseViewModel.caseDetailsCollectionObject.caseId!!)
+//                updateJudgeAssignedCaseIds(curJudge , vmRegisterNewCaseViewModel.caseDetailsCollectionObject.caseId!!)
             }.addOnFailureListener {
                 Toast.makeText(requireActivity(), "Try Again Later", Toast.LENGTH_SHORT).show()
                 return@addOnFailureListener
@@ -130,6 +131,7 @@ class JudgeDetailsFragment : Fragment() {
                     Log.d("response" ,"${result!!.daysGroup} + ${result!!.lagGroup}" )
 
                     uploadDetailsIntoFirebase()
+                    addCaseForJudge()
                 }else{
                     Toast.makeText(requireActivity(), "Response Invalid", Toast.LENGTH_SHORT).show()
                 }
@@ -144,9 +146,28 @@ class JudgeDetailsFragment : Fragment() {
         Toast.makeText(requireActivity(), "inside the function", Toast.LENGTH_SHORT).show()
     }
 
-    private fun updateJudgeAssignedCaseIds(curJudge: JudgeDetails, caseId: String) {
+    private fun addCaseForJudge() {
+        val judgeId: String? = vmRegisterNewCaseViewModel.caseDetailsCollectionObject.judgeId
+        val caseId: String? = vmRegisterNewCaseViewModel.caseDetailsCollectionObject.caseId
+        val priorityNumber: Double? = vmRegisterNewCaseViewModel.caseDetailsCollectionObject.priorityNumber
+        val priorityCategory: String? = vmRegisterNewCaseViewModel.caseDetailsCollectionObject.priorityCategory
+
+        val caseListMap = HashMap<String, Any>()
+        caseListMap[caseId!!] = priorityNumber!!
+
+        dbRef.child("judges").child(judgeId!!)
+            .child("assignedCases").child(priorityCategory!!).updateChildren(caseListMap)
+            .addOnCompleteListener {
+                Toast.makeText(requireActivity(), "Case Added to Judge", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Toast.makeText(requireActivity(), "Try Again Later", Toast.LENGTH_SHORT).show()
+                return@addOnFailureListener
+            }
+    }
+
+   /* private fun updateJudgeAssignedCaseIds(curJudge: JudgeDetails, caseId: String) {
         curJudge.assignedCases.add(caseId)
         var dbRefJudgeDetail = dbRef.child("judges").child(curJudge.judgeId!!)
         dbRefJudgeDetail.setValue(curJudge)
-    }
+    }*/
 }
