@@ -20,8 +20,11 @@ import com.example.lawdcm.retrofit.BasePriorityNumberInterface
 import com.example.lawdcm.retrofit.RetrofitClientInstance
 import com.example.lawdcm.singleton.ActiveJudges
 import com.example.lawdcm.viewmodels.RegisterNewCaseViewModel
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -103,6 +106,9 @@ class JudgeDetailsFragment : Fragment() {
     }
 
     private fun getCasePriority() {
+
+
+
         val api = RetrofitClientInstance.getClient().create(BasePriorityNumberInterface::class.java)
         val call = api.getBasePriority("13" , "46" , vmRegisterNewCaseViewModel.caseDetailsCollectionObject.caseCategory!!,"75")
         call.enqueue(object : Callback<ApiResponse>{
@@ -124,8 +130,8 @@ class JudgeDetailsFragment : Fragment() {
                     }
                     vmRegisterNewCaseViewModel.caseDetailsCollectionObject.priorityNumber = priority!!
 
-                    Toast.makeText(requireActivity(), "Final priority $priority", Toast.LENGTH_SHORT).show()
-                    Toast.makeText(requireActivity(), "Final priority ${vmRegisterNewCaseViewModel.caseDetailsCollectionObject.priorityCategory}", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireActivity(), "Final priority $priority", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireActivity(), "Final priority ${vmRegisterNewCaseViewModel.caseDetailsCollectionObject.priorityCategory}", Toast.LENGTH_SHORT).show()
                     Log.d("response1" ,"Final priority $priority")
                     Log.d("response1" ,"Final priority ${vmRegisterNewCaseViewModel.caseDetailsCollectionObject.priorityCategory}")
                     Log.d("response" ,"${result!!.daysGroup} + ${result!!.lagGroup}" )
@@ -147,22 +153,44 @@ class JudgeDetailsFragment : Fragment() {
     }
 
     private fun addCaseForJudge() {
+
+        Toast.makeText(requireActivity(), "reched addCAsesjudge", Toast.LENGTH_SHORT).show()
         val judgeId: String? = vmRegisterNewCaseViewModel.caseDetailsCollectionObject.judgeId
         val caseId: String? = vmRegisterNewCaseViewModel.caseDetailsCollectionObject.caseId
         val priorityNumber: Double? = vmRegisterNewCaseViewModel.caseDetailsCollectionObject.priorityNumber
         val priorityCategory: String? = vmRegisterNewCaseViewModel.caseDetailsCollectionObject.priorityCategory
 
-        val caseListMap = HashMap<String, Any>()
-        caseListMap[caseId!!] = priorityNumber!!
 
-        dbRef.child("judges").child(judgeId!!)
-            .child("assignedCases").child(priorityCategory!!).updateChildren(caseListMap)
-            .addOnCompleteListener {
-                Toast.makeText(requireActivity(), "Case Added to Judge", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener {
-                Toast.makeText(requireActivity(), "Try Again Later", Toast.LENGTH_SHORT).show()
-                return@addOnFailureListener
+
+        var caseList  : ArrayList<String> = arrayListOf()
+        dbRef.child("judges").child(judgeId!!).child("assignedCases").child(priorityCategory!!).addListenerForSingleValueEvent(object  : ValueEventListener{
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                Toast.makeText(requireActivity(), "ondatachanged", Toast.LENGTH_SHORT).show()
+                if (snapshot.exists()){
+                    caseList = snapshot.value as ArrayList<String>
+                }
+                caseList.add(caseId!!)
+
+                Toast.makeText(requireActivity(), "after ondata", Toast.LENGTH_SHORT).show()
+                dbRef.child("judges").child(judgeId!!)
+                    .child("assignedCases").child(priorityCategory!!).setValue(caseList)
+                    .addOnCompleteListener {
+                        Toast.makeText(requireActivity(), "Case Added to Judge", Toast.LENGTH_SHORT).show()
+                    }.addOnFailureListener {
+                        Toast.makeText(requireActivity(), "Try Again Later", Toast.LENGTH_SHORT).show()
+                        return@addOnFailureListener
+                    }
             }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+
     }
 
    /* private fun updateJudgeAssignedCaseIds(curJudge: JudgeDetails, caseId: String) {
