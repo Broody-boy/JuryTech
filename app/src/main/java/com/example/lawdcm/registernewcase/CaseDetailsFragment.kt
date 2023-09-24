@@ -16,13 +16,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.lawdcm.R
 import com.example.lawdcm.databinding.FragmentCaseDetailsBinding
 import com.example.lawdcm.models.CaseDetails
-import com.example.lawdcm.singleton.CaseCategoryList
+import com.example.lawdcm.singleton.DropdownDataList
 import com.example.lawdcm.viewmodels.RegisterNewCaseViewModel
 import java.util.Calendar
 
 class CaseDetailsFragment : Fragment() {
-    private lateinit var caseCategoryList: List<Pair<Int, String>>
-    private var caseTypeList : ArrayList<String> = ArrayList()
     private lateinit var binding: FragmentCaseDetailsBinding
     private lateinit var navController: NavController
     private lateinit var vmRegisterNewCaseViewModel: RegisterNewCaseViewModel
@@ -42,16 +40,20 @@ class CaseDetailsFragment : Fragment() {
 
         if(!isAdded) return
 
-        caseTypeList.add("CIVIL")
-        caseTypeList.add("CRIMINAL")
 
-        val adapterCaseType = ArrayAdapter(requireActivity(), R.layout.auto_textview , caseTypeList)
+
+        val adapterCaseType = ArrayAdapter(requireActivity(), R.layout.auto_textview , DropdownDataList.caseTypeList)
         binding.spinnerCaseType.adapter = adapterCaseType
 
-        caseCategoryList = CaseCategoryList().caseCategoryList
 
-        val adapterCaseCategory = ArrayAdapter(requireActivity(), R.layout.auto_textview , caseCategoryList)
+        val adapterCaseCategory = ArrayAdapter(requireActivity(), R.layout.auto_textview , DropdownDataList.caseCategoryName)
         binding.spinnerCaseCategory.adapter = adapterCaseCategory
+
+        val adapterStates = ArrayAdapter(requireActivity(), R.layout.auto_textview , DropdownDataList.statesNameList)
+        binding.spinnerState.adapter = adapterStates
+
+//        val adapterDistricts = ArrayAdapter(requireActivity(), R.layout.auto_textview , DropdownDataList.d)
+//        binding.spinnerCaseType.adapter = adapterCaseType
 
         //ActiveJudges.getJudgesListFromFirebase("28398")
 
@@ -89,16 +91,18 @@ class CaseDetailsFragment : Fragment() {
     private fun updateCaseDetailsIntoViewModel() {
         currObj.caseId = binding.etCaseId.text.toString()
         currObj.caseName = binding.etCaseName.text.toString()
-        currObj.caseType = caseTypeList[binding.spinnerCaseType.selectedItemPosition]
+        currObj.caseType = DropdownDataList.caseTypeList[binding.spinnerCaseType.selectedItemPosition]
         currObj.dateOfFiling = binding.tvTapToChooseDateOfFilling.text.toString()
-        currObj.caseCategory = caseCategoryList[binding.spinnerCaseCategory.selectedItemPosition].first.toString()
+        currObj.caseCategory = DropdownDataList.caseCategoryHashMap.get(DropdownDataList.caseCategoryName[binding.spinnerCaseCategory.selectedItemPosition])
+            .toString()
+        currObj.stateCode = DropdownDataList.caseStateHashMap.get(DropdownDataList.statesNameList[binding.spinnerState.selectedItemPosition])
+
         Toast.makeText(requireContext(), "${currObj.caseCategory}", Toast.LENGTH_SHORT).show()
         currObj.matterType = binding.rgMatterType.findViewById<RadioButton>(binding.rgMatterType
             .checkedRadioButtonId).text.toString().uppercase()
         currObj.causeOfAction = binding.etCauseOfAction.text.toString()
         currObj.caseAct = binding.etCaseAct.text.toString()
         currObj.caseActSection = binding.etCaseActSection.text.toString()
-
         vmRegisterNewCaseViewModel.caseDetailsCollectionObject = currObj
 
     }

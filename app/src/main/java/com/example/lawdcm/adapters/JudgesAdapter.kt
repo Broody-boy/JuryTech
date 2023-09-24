@@ -34,7 +34,7 @@ class JudgesAdapter(val cntxt : Context) : RecyclerView.Adapter<JudgesAdapter.Vi
 
         storageRef.child("judgeProfile").child("${judgeDetailInHand.judgeId!!}.jpg")
             .downloadUrl.addOnSuccessListener {
-                Toast.makeText(cntxt, "$it", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(cntxt, "$it", Toast.LENGTH_SHORT).show()
                 Glide.with(cntxt).load(it).into(holder.imgJudge)
         }
         .addOnFailureListener { Toast.makeText(cntxt, "${it.message}", Toast.LENGTH_SHORT).show() }

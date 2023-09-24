@@ -48,8 +48,9 @@ object Utils {
         })
     }
 
-    fun populateCasesIntoViewModel(courtId : String, callback: (ArrayList<CaseDetails>) -> Unit){
-        val dbreference = FirebaseDatabase.getInstance().getReference("caseDetails").child(courtId).child("newCases")
+    fun populateCasesIntoViewModel(courtId : String, priorityCategory : String, callback: (ArrayList<CaseDetails>) -> Unit){
+        val dbreference = FirebaseDatabase.getInstance().getReference("caseDetails").child(courtId).child("allCases")
+            .child(priorityCategory)
 
         dbreference.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {

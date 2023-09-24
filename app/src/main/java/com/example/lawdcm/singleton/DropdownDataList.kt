@@ -1,6 +1,51 @@
 package com.example.lawdcm.singleton
 
-class CaseCategoryList {
+object DropdownDataList {
+
+
+    val statesCodeList = arrayListOf(
+        2, 6, 8, 27, 18, 26, 31, 32, 30, 17, 14, 5, 12, 7, 3, 4, 33, 23, 1, 25, 21, 19, 11, 22, 9, 24, 10, 29, 20, 13, 15, 16
+    )
+
+
+    val statesNameList = arrayListOf(
+        "Andhra Pradesh",
+        "Assam",
+        "Bihar",
+        "Chandigarh",
+        "Chhattisgarh",
+        "Delhi",
+        "Diu and Daman",
+        "DNH at Silvassa",
+        "Goa",
+        "Gujarat",
+        "Haryana",
+        "Himachal Pradesh",
+        "Jammu and Kashmir",
+        "Jharkhand",
+        "Karnataka",
+        "Kerala",
+        "Ladakh",
+        "Madhya Pradesh",
+        "Maharashtra",
+        "Manipur",
+        "Meghalaya",
+        "Mizoram",
+        "Odisha",
+        "Punjab",
+        "Rajasthan",
+        "Sikkim",
+        "Tamil Nadu",
+        "Telangana",
+        "Tripura",
+        "Uttar Pradesh",
+        "Uttarakhand",
+        "West Bengal"
+    )
+
+
+    val caseTypeList = arrayListOf("CIVIL" , "CRIMINAL")
+
     val caseCategoryId = arrayListOf(
         734, 736, 853, 856, 977, 1822, 1892, 5070, 5098, 5943, 6716, 6743,
         284, 724, 1016, 1104, 1105, 1532, 1554, 1702, 1706, 1788, 1803, 1810,
@@ -80,7 +125,16 @@ class CaseCategoryList {
         "UCR - UNTRACE/CANCELLATION REPORT"
     )
 
-    var caseCategoryList: List<Pair<Int, String>> = caseCategoryId.zip(caseCategoryName) { intValue, stringValue ->
-        Pair(intValue, stringValue)
+    val caseCategoryHashMap : HashMap<String , Int> = hashMapOf()
+    val caseStateHashMap : HashMap<String , Int> = hashMapOf()
+    init {
+        caseCategoryId.forEachIndexed { index, s ->
+            caseCategoryHashMap.put(caseCategoryName[index] , s)
+        }
+
+        statesCodeList.forEachIndexed { index, s ->
+            caseCategoryHashMap.put(statesNameList[index] , s)
+        }
     }
+
 }

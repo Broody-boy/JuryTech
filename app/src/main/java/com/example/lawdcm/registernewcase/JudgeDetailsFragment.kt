@@ -90,7 +90,8 @@ class JudgeDetailsFragment : Fragment() {
 
         Toast.makeText(requireActivity(), "$curJudge", Toast.LENGTH_SHORT).show()
 
-        var dbRefCaseDetails = dbRef.child("caseDetails").child(curJudge.courtId!!).child("newCases")
+        var dbRefCaseDetails = dbRef.child("caseDetails").child(curJudge.courtId!!).child("allCases")
+            .child(vmRegisterNewCaseViewModel.caseDetailsCollectionObject.priorityCategory!!)
         dbRefCaseDetails.child(vmRegisterNewCaseViewModel.caseDetailsCollectionObject.caseId!!).setValue(vmRegisterNewCaseViewModel.caseDetailsCollectionObject)
             .addOnCompleteListener {
                 Toast.makeText(requireActivity(), "Case Uploaded", Toast.LENGTH_SHORT).show()
@@ -98,13 +99,12 @@ class JudgeDetailsFragment : Fragment() {
             }.addOnFailureListener {
                 Toast.makeText(requireActivity(), "Try Again Later", Toast.LENGTH_SHORT).show()
                 return@addOnFailureListener
-
             }
     }
 
     private fun getCasePriority() {
         val api = RetrofitClientInstance.getClient().create(BasePriorityNumberInterface::class.java)
-        val call = api.getBasePriority("13" , "46" , "5979" ,"75")
+        val call = api.getBasePriority("13" , "46" , vmRegisterNewCaseViewModel.caseDetailsCollectionObject.caseCategory!!,"75")
         call.enqueue(object : Callback<ApiResponse>{
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onResponse(call: Call<ApiResponse>, response: Response<ApiResponse>) {
