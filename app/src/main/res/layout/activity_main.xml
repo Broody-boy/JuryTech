@@ -87,8 +87,10 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="27dp"
-                android:src="@drawable/ic_cases"
+                android:src="@drawable/ic_gavel_selector"
                 app:tint="#bbbbbd"
+                android:clickable="true"
+                android:focusable="true"
                 android:layout_marginStart="10dp"/>
 
             <ImageView
