@@ -12,7 +12,6 @@ import com.example.lawdcm.bottomnav.ProfileFragment
 import com.example.lawdcm.databinding.ActivityMainBinding
 import com.example.lawdcm.singleton.registrarLoggedIn
 import com.example.lawdcm.viewmodels.AllCasesViewModel
-import com.example.lawdcm.viewmodels.RegisterNewCaseViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {

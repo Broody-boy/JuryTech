@@ -3,6 +3,7 @@ package com.example.lawdcm
 import android.content.Context
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
@@ -136,6 +137,24 @@ object Utils {
     fun getCurrentDate(): String {
         return LocalDate.now().toString()
     }
+
+
+    fun fetchCaseDetailsFromCaseId(caseId : String , callback : (CaseDetails) -> Unit){
+
+        FirebaseDatabase.getInstance().getReference("caseDetails").child(caseId)
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    snapshot.getValue(CaseDetails::class.java)?.let { callback(it) }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.d("errorhere", "error")
+                }
+
+            })
+    }
+
+
 
     interface LoggedInRegistrarDetailsCallBack{
         fun onRegistrarDetailsFetched(registrar : RegistrarAuth)

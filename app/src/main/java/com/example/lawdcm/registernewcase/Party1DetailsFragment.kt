@@ -12,16 +12,15 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.example.lawdcm.R
 import com.example.lawdcm.databinding.FragmentParty1DetailsBinding
-import com.example.lawdcm.models.CaseDetails
 import com.example.lawdcm.models.PartyDetails
-import com.example.lawdcm.viewmodels.RegisterNewCaseViewModel
+import com.example.lawdcm.viewmodels.CaseDetailsVM
 import java.util.Calendar
 
 class Party1DetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentParty1DetailsBinding
     private lateinit var navController: NavController
-    private lateinit var vmRegisterNewCaseViewModel: RegisterNewCaseViewModel
+    private lateinit var vmRegisterNewCaseViewModel: CaseDetailsVM
     private var applicantDetails = PartyDetails()
 
     override fun onCreateView(
@@ -37,7 +36,7 @@ class Party1DetailsFragment : Fragment() {
 
         if(!isAdded) return
 
-        vmRegisterNewCaseViewModel = ViewModelProvider(requireActivity())[RegisterNewCaseViewModel::class.java]
+        vmRegisterNewCaseViewModel = ViewModelProvider(requireActivity())[CaseDetailsVM::class.java]
 
         navController = findNavController()
 
