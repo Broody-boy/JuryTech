@@ -138,6 +138,13 @@ object Utils {
         return LocalDate.now().toString()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getNextCalenderDate(date : String) : String{
+        val formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val curDate = LocalDate.parse(date, formatter)
+        return curDate.plusDays(1).toString()
+    }
+
 
     fun fetchCaseDetailsFromCaseId(caseId : String , callback : (CaseDetails) -> Unit){
 

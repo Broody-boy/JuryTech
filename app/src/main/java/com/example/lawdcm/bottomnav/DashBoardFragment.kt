@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.lifecycleScope
 import com.example.lawdcm.Utils
 import com.example.lawdcm.databinding.FragmentDashBoardBinding
 import com.example.lawdcm.singleton.registrarLoggedIn
@@ -19,6 +20,12 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import io.paperdb.Paper
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlin.math.log
 
 class DashBoardFragment : Fragment() {
 
@@ -39,7 +46,7 @@ class DashBoardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.button.setOnClickListener {
-            scheduleCases("", "")
+            scheduleCases("New_HIGH", "")
         }
     }
 
@@ -48,6 +55,7 @@ class DashBoardFragment : Fragment() {
 
         val priorityCategoryDUMMY = "NEW_HIGH"
         val judgeIdDUMMY = "808080"
+//        Paper.book().write(priorityCategoryDUMMY, arrayListOf("1","2","3","4","5","6"))
 
         val newHighIdList : ArrayList<String> = Paper.book().read(priorityCategoryDUMMY)!!
         //Toast.makeText(requireActivity(), "" + newHighIdList, Toast.LENGTH_SHORT).show()
@@ -66,27 +74,27 @@ class DashBoardFragment : Fragment() {
 
         fetchedLimit.observe(viewLifecycleOwner){
             if(fetchedLimit.value == newHighIdList.size){   //data fetched complete. so proceed further
-                newList.sortByDescending { it.second }
+                newList.sortBy { it.second }
                 Toast.makeText(requireActivity(), "$newList", Toast.LENGTH_SHORT).show()
+                Log.d("nailist" , "$newList")
 
-                for(pair in newList){
-                    scheduleToNextAvailableDate(priorityCategoryDUMMY, judgeIdDUMMY, pair.first)
-                }
+                scheduleToNextAvailableDate(priorityCategoryDUMMY, judgeIdDUMMY, newList , newList.size-1)
+
             }
         }
 
-        //Toast.makeText(requireActivity(), "${Utils.getCurrentDate()}", Toast.LENGTH_SHORT).show()
     }
 
-    private fun scheduleToNextAvailableDate(priorityCategory: String, judgeId: String, caseId : String) {
+    private fun scheduleToNextAvailableDate(priorityCategory: String, judgeId: String, caseList : ArrayList<Pair<String,Double>>, noOfCases : Int) {
+
+//        Log.d("konsecasekliechla" , caseId)
         //add judge care taking afterwards
         dbRef.child("casePool").child(registrarLoggedIn.courtId).child(judgeId).child(priorityCategory).addListenerForSingleValueEvent(object: ValueEventListener{
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onDataChange(snapshot: DataSnapshot) {
-
                 if(!snapshot.exists()) {  //nothing there
                     Toast.makeText(requireActivity(), "switch 1", Toast.LENGTH_SHORT).show()
-                    snapshot.ref.child(Utils.getCurrentDate()).setValue(arrayListOf(caseId))
+                    snapshot.ref.child(Utils.getCurrentDate()).setValue(arrayListOf(caseList[noOfCases].first))
                         .addOnSuccessListener {
                             Toast.makeText(requireActivity(), "switch 1 complete", Toast.LENGTH_SHORT).show()
                         }
@@ -96,16 +104,28 @@ class DashBoardFragment : Fragment() {
                     var lastDateList  = snapshot.children.last().value as ArrayList<String>
 
                     if(lastDateList.size < 4){
-                        lastDateList.add(caseId)
+                        lastDateList.add(caseList[noOfCases].first)
                         snapshot.ref.child(lastDate).setValue(lastDateList)
+                        Log.d("daladata" , caseList[noOfCases].first)
+                    }else{
+                        lastDate = Utils.getNextCalenderDate(lastDate)
+                        snapshot.ref.child(lastDate).setValue(arrayListOf(caseList[noOfCases].first))
+                            .addOnSuccessListener {
+                                Toast.makeText(requireActivity(), "switch 1 complete", Toast.LENGTH_SHORT).show()
+                            }
+
                     }
                 }
-            }
 
+                if (noOfCases  >= 1){
+                    scheduleToNextAvailableDate(priorityCategory , judgeId , caseList , noOfCases -1)
+                }
+
+            }
             override fun onCancelled(error: DatabaseError) {
-
             }
-
         })
+
+
     }
 }
