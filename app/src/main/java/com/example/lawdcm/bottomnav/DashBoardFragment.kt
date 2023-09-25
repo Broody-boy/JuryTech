@@ -46,39 +46,96 @@ class DashBoardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.button.setOnClickListener {
-            scheduleCases("New_HIGH", "")
+            scheduleCases("NEW_HIGH")
+            scheduleCases("NEW_LOW")
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun scheduleCases(priorityCategory: String, judgeId : String) {
+    private fun scheduleCases(priorityCategory: String) {
 
-        val priorityCategoryDUMMY = "NEW_HIGH"
-        val judgeIdDUMMY = "808080"
+//        val priorityCategoryDUMMY = "NEW_HIGH"
+//        val judgeIdDUMMY = "808080"
 //        Paper.book().write(priorityCategoryDUMMY, arrayListOf("1","2","3","4","5","6"))
 
-        val newHighIdList : ArrayList<String> = Paper.book().read(priorityCategoryDUMMY)!!
+//        [(2, 3.3049999999999997), (4, 1.89), (5, 1.66), (1, 1.53), (6, 1.299), (3, 1.105)]
+
+
+
+
+                                           //caseID  JudgeID
+        val newHighIdList : ArrayList<Pair<String , String>> = Paper.book().read(priorityCategory)!!
         //Toast.makeText(requireActivity(), "" + newHighIdList, Toast.LENGTH_SHORT).show()
 
         val fetchedLimit = MutableLiveData<Int>()
         fetchedLimit.value = 0
 
-        var newList : ArrayList<Pair<String,Double>> = arrayListOf()
+        //NEWLIST  {<JUDGE , {<123 , 0.2> , <145 ,0.2>)>}
+
+        var newList : ArrayList<Pair<String,ArrayList<Pair<String,Double>>>> = arrayListOf()
 
         for(id in newHighIdList){
-            Utils.fetchCaseDetailsFromCaseId(id){
-                newList.add(Pair(id, it.priorityNumber))
+            Utils.fetchCaseDetailsFromCaseId(id.first){
+                val pair = Pair(it.caseId!!, it.priorityNumber)
+                val judgeId = id.second
+
+                var found = 0
+
+
+                for (outerPair in newList) {
+                    val outerKey = outerPair.first
+                    val innerPairs = outerPair.second
+
+                    if (outerKey == judgeId) {
+                        // Add the newInnerPair to the ArrayList of innerPairs
+                        innerPairs.add(pair)
+
+                        found = 1
+
+                        val updatedOuterPair = Pair(outerKey, innerPairs)
+                        val index = newList.indexOf(outerPair)
+                        if (index != -1) {
+                            newList[index] = updatedOuterPair
+                        }
+                        // Optionally, break out of the loop if you only want to add to the first matching outer pair
+                         break
+                    }
+                }
+                if (found == 0){
+                    newList.add(Pair(id.second , arrayListOf(pair)))
+                }
+
+
+
                 fetchedLimit.value = fetchedLimit.value!! + 1
             }
         }
 
         fetchedLimit.observe(viewLifecycleOwner){
-            if(fetchedLimit.value == newHighIdList.size){   //data fetched complete. so proceed further
-                newList.sortBy { it.second }
+            if(fetchedLimit.value == newHighIdList.size){ //data fetched complete. so proceed further
+
+
+                for (judges in newList){
+                    val judge  = judges.first
+                    val cases = judges.second
+                    cases.sortBy { it.second }
+
+                    val updatedOuterPair = Pair(judge, cases)
+                    val index = newList.indexOf(judges)
+                    if (index != -1) {
+                        newList[index] = updatedOuterPair
+                    }
+
+                }
+
                 Toast.makeText(requireActivity(), "$newList", Toast.LENGTH_SHORT).show()
                 Log.d("nailist" , "$newList")
 
-                scheduleToNextAvailableDate(priorityCategoryDUMMY, judgeIdDUMMY, newList , newList.size-1)
+                for (case in newList){
+
+                    //case.first reperesents judgeID
+                    scheduleToNextAvailableDate(priorityCategory, case.first, case.second , case.second.size-1)
+                }
 
             }
         }

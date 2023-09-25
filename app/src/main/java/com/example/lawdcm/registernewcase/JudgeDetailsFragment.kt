@@ -78,6 +78,7 @@ class JudgeDetailsFragment : Fragment() {
                     val caseType = vmCaseDetails.caseDetailsCollectionObject.caseType
                     val importance = vmCaseDetails.caseDetailsCollectionObject.matterType
                     val age = vmCaseDetails.caseDetailsCollectionObject.dateOfFiling
+                    val judgeId = vmCaseDetails.caseDetailsCollectionObject.judgeId
 
                     var finalPriorityNumber = Utils.getFinalPriority(result.daysGroup!! , result.lagGroup!! , caseType!! , importance!! , age!!)
 
@@ -89,8 +90,11 @@ class JudgeDetailsFragment : Fragment() {
                     //Toast.makeText(requireActivity(), "Final priority $priority", Toast.LENGTH_SHORT).show()
                     //Toast.makeText(requireActivity(), "Final priority ${vmRegisterNewCaseViewModel.caseDetailsCollectionObject.priorityCategory}", Toast.LENGTH_SHORT).show()
 
+                    val alljudges  = ActiveJudges.activeJudgesList.value
+                    var curJudge = alljudges!!.get(binding.spinnerJudge.selectedItemPosition)
+
                     uploadDetailsIntoFirebase()
-                    addToPaperQueue(caseId, priorityCategory)
+                    addToPaperQueue(caseId, priorityCategory , curJudge.judgeId!!)
                 }else{
                     Toast.makeText(requireActivity(), "Response Invalid", Toast.LENGTH_SHORT).show()
                 }
@@ -105,10 +109,12 @@ class JudgeDetailsFragment : Fragment() {
         Toast.makeText(requireActivity(), "inside the function", Toast.LENGTH_SHORT).show()
     }
 
-    private fun addToPaperQueue(caseId : String, priorityCategory: String) {
-        var savedList : ArrayList<String> = Paper.book().read(priorityCategory) ?: arrayListOf()
-        savedList.add(caseId)
+    private fun addToPaperQueue(caseId : String, priorityCategory: String , judgeId : String) {
 
+        Toast.makeText(requireActivity(), judgeId, Toast.LENGTH_SHORT).show()
+        Log.d("judgu" , judgeId)
+        var savedList : ArrayList<Pair<String , String>> = Paper.book().read(priorityCategory) ?: arrayListOf()
+        savedList.add(Pair(caseId , judgeId))
         Paper.book().write(priorityCategory, savedList)
     }
 
