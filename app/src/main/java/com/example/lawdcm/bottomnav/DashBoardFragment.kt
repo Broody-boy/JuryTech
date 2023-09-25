@@ -29,10 +29,9 @@ import kotlin.math.log
 
 class DashBoardFragment : Fragment() {
 
-
-    //    private lateinit var newHigh : ArrayList<>
     private lateinit var binding : FragmentDashBoardBinding
     private val dbRef : DatabaseReference = FirebaseDatabase.getInstance().getReference()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,97 +53,41 @@ class DashBoardFragment : Fragment() {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun scheduleCases(priorityCategory: String) {
 
-//        val priorityCategoryDUMMY = "NEW_HIGH"
-//        val judgeIdDUMMY = "808080"
-//        Paper.book().write(priorityCategoryDUMMY, arrayListOf("1","2","3","4","5","6"))
-
-//        [(2, 3.3049999999999997), (4, 1.89), (5, 1.66), (1, 1.53), (6, 1.299), (3, 1.105)]
+        var judgeWiseCasesHashMap : HashMap<String, ArrayList<String>>
+        judgeWiseCasesHashMap = Paper.book().read(priorityCategory) ?: hashMapOf()
 
 
+        for(judgeId in judgeWiseCasesHashMap.keys){
 
+            val assignedCasesList = judgeWiseCasesHashMap.get(judgeId)  //this is ArrayList<CaseIds> for a particular judge
 
-                                           //caseID  JudgeID
-        val newHighIdList : ArrayList<Pair<String , String>> = Paper.book().read(priorityCategory)!!
-        //Toast.makeText(requireActivity(), "" + newHighIdList, Toast.LENGTH_SHORT).show()
+            convertToPriorityList(assignedCasesList!!){     //now, convert the above to ArrayList of Pair(caseId, its priority number)
+                it.sortBy { it.second }   //sort by priority ascending
 
-        val fetchedLimit = MutableLiveData<Int>()
-        fetchedLimit.value = 0
-
-        //NEWLIST  {<JUDGE , {<123 , 0.2> , <145 ,0.2>)>}
-
-        var newList : ArrayList<Pair<String,ArrayList<Pair<String,Double>>>> = arrayListOf()
-
-        for(id in newHighIdList){
-            Utils.fetchCaseDetailsFromCaseId(id.first){
-                val pair = Pair(it.caseId!!, it.priorityNumber)
-                val judgeId = id.second
-
-                var found = 0
-
-
-                for (outerPair in newList) {
-                    val outerKey = outerPair.first
-                    val innerPairs = outerPair.second
-
-                    if (outerKey == judgeId) {
-                        // Add the newInnerPair to the ArrayList of innerPairs
-                        innerPairs.add(pair)
-
-                        found = 1
-
-                        val updatedOuterPair = Pair(outerKey, innerPairs)
-                        val index = newList.indexOf(outerPair)
-                        if (index != -1) {
-                            newList[index] = updatedOuterPair
-                        }
-                        // Optionally, break out of the loop if you only want to add to the first matching outer pair
-                         break
-                    }
-                }
-                if (found == 0){
-                    newList.add(Pair(id.second , arrayListOf(pair)))
-                }
-
-
-
-                fetchedLimit.value = fetchedLimit.value!! + 1
-            }
-        }
-
-        fetchedLimit.observe(viewLifecycleOwner){
-            if(fetchedLimit.value == newHighIdList.size){ //data fetched complete. so proceed further
-
-
-                for (judges in newList){
-                    val judge  = judges.first
-                    val cases = judges.second
-                    cases.sortBy { it.second }
-
-                    val updatedOuterPair = Pair(judge, cases)
-                    val index = newList.indexOf(judges)
-                    if (index != -1) {
-                        newList[index] = updatedOuterPair
-                    }
-
-                }
-
-                Toast.makeText(requireActivity(), "$newList", Toast.LENGTH_SHORT).show()
-                Log.d("nailist" , "$newList")
-
-                for (case in newList){
-
-                    //case.first reperesents judgeID
-                    scheduleToNextAvailableDate(priorityCategory, case.first, case.second , case.second.size-1)
-                }
+                scheduleToNextAvailableDate(priorityCategory, judgeId, it , it.size-1)  //and start scheduling from last
 
             }
         }
+    }
 
+    private fun convertToPriorityList(assignedCasesList: ArrayList<String>, callback : (ArrayList<Pair<String, Double>>) -> Unit) {
+        var fetchedLimit = 0
+        var fetchedList : ArrayList<Pair<String, Double>> = arrayListOf()
+
+        for(caseId in assignedCasesList){
+            Utils.fetchCaseDetailsFromCaseId(caseId){
+                fetchedList.add(Pair(caseId, it.priorityNumber))
+                fetchedLimit++
+
+                if(fetchedLimit == assignedCasesList.size){
+                    callback(fetchedList)
+                }
+            }
+        }
     }
 
     private fun scheduleToNextAvailableDate(priorityCategory: String, judgeId: String, caseList : ArrayList<Pair<String,Double>>, noOfCases : Int) {
 
-//        Log.d("konsecasekliechla" , caseId)
         //add judge care taking afterwards
         dbRef.child("casePool").child(registrarLoggedIn.courtId).child(judgeId).child(priorityCategory).addListenerForSingleValueEvent(object: ValueEventListener{
             @RequiresApi(Build.VERSION_CODES.O)
@@ -175,7 +118,7 @@ class DashBoardFragment : Fragment() {
                 }
 
                 if (noOfCases  >= 1){
-                    scheduleToNextAvailableDate(priorityCategory , judgeId , caseList , noOfCases -1)
+                    scheduleToNextAvailableDate(priorityCategory , judgeId , caseList , noOfCases - 1)
                 }
 
             }

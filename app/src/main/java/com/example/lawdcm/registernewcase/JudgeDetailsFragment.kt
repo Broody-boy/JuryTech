@@ -113,9 +113,20 @@ class JudgeDetailsFragment : Fragment() {
 
         Toast.makeText(requireActivity(), judgeId, Toast.LENGTH_SHORT).show()
         Log.d("judgu" , judgeId)
-        var savedList : ArrayList<Pair<String , String>> = Paper.book().read(priorityCategory) ?: arrayListOf()
-        savedList.add(Pair(caseId , judgeId))
-        Paper.book().write(priorityCategory, savedList)
+
+//                                         judgeId           caseId
+        var judgeWiseCasesHashMap : HashMap<String, ArrayList<String>>
+        judgeWiseCasesHashMap = Paper.book().read(priorityCategory) ?: hashMapOf()
+
+        var assignedList = judgeWiseCasesHashMap.getOrDefault(judgeId , arrayListOf())
+        assignedList.add(caseId)
+        judgeWiseCasesHashMap.set(judgeId, assignedList)
+        Paper.book().write(priorityCategory, judgeWiseCasesHashMap)
+
+
+//        var savedList : ArrayList<Pair<String , String>> = Paper.book().read(priorityCategory) ?: arrayListOf()
+//        savedList.add(Pair(caseId , judgeId))
+//        Paper.book().write(priorityCategory, savedList)
     }
 
 
