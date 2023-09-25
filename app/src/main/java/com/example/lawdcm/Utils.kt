@@ -50,8 +50,8 @@ object Utils {
     }
 
     fun populateCasesIntoViewModel(courtId : String, priorityCategory : String, callback: (ArrayList<CaseDetails>) -> Unit){
-        val dbreference = FirebaseDatabase.getInstance().getReference("caseDetails").child(courtId).child("allCases")
-            .child(priorityCategory)
+        val dbreference = FirebaseDatabase.getInstance().getReference("caseDetails").child(courtId)
+            .orderByChild("priorityCategory").equalTo(priorityCategory)
 
         dbreference.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -148,7 +148,7 @@ object Utils {
 
     fun fetchCaseDetailsFromCaseId(caseId : String , callback : (CaseDetails) -> Unit){
 
-        FirebaseDatabase.getInstance().getReference("caseDetails").child(caseId)
+        FirebaseDatabase.getInstance().getReference("caseDetails").child(registrarLoggedIn.courtId).child(caseId)
             .addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     snapshot.getValue(CaseDetails::class.java)?.let { callback(it) }

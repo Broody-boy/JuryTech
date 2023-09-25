@@ -18,6 +18,7 @@ import com.example.lawdcm.retrofit.ApiResponse
 import com.example.lawdcm.retrofit.BasePriorityNumberInterface
 import com.example.lawdcm.retrofit.RetrofitClientInstance
 import com.example.lawdcm.singleton.ActiveJudges
+import com.example.lawdcm.singleton.registrarLoggedIn
 import com.example.lawdcm.viewmodels.CaseDetailsVM
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -140,7 +141,7 @@ class JudgeDetailsFragment : Fragment() {
 
         //Toast.makeText(requireActivity(), "$curJudge", Toast.LENGTH_SHORT).show()
 
-        dbRef.child("caseDetails")
+        dbRef.child("caseDetails").child(registrarLoggedIn.courtId)
             .child(vmCaseDetails.caseDetailsCollectionObject.caseId!!).setValue(vmCaseDetails.caseDetailsCollectionObject)
             .addOnCompleteListener {
                 Toast.makeText(requireActivity(), "Case Uploaded", Toast.LENGTH_SHORT).show()
