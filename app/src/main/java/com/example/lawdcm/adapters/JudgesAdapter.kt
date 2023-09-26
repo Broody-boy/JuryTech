@@ -42,7 +42,7 @@ class JudgesAdapter(val cntxt : Context) : RecyclerView.Adapter<JudgesAdapter.Vi
         .addOnFailureListener { Toast.makeText(cntxt, "${it.message}", Toast.LENGTH_SHORT).show() }
         .addOnCanceledListener { Toast.makeText(cntxt, "gadbad2", Toast.LENGTH_SHORT).show() }
 
-        holder.imgDropDown.setOnClickListener {
+        holder.cvContent.setOnClickListener {
             val intent = Intent(holder.itemView.context , ScheduledCases::class.java)
             intent.putExtra("judgeId" , judgeDetailInHand.judgeId)
             holder.itemView.context.startActivity(intent)
@@ -59,6 +59,7 @@ class JudgesAdapter(val cntxt : Context) : RecyclerView.Adapter<JudgesAdapter.Vi
         val imgJudge = binding.imgJudge
         val tvJudgeName = binding.tvJudgeName
         val tvJudgeId = binding.tvJudgeId
+        val cvContent = binding.cvContent
         val imgDropDown = binding.expandDropDown //badme nya button lagana hai
     }
 }
