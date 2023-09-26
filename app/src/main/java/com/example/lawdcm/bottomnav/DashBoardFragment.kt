@@ -16,6 +16,7 @@ import com.example.lawdcm.R
 import com.example.lawdcm.Utils
 import com.example.lawdcm.adapters.AllCasesAdapter
 import com.example.lawdcm.databinding.FragmentDashBoardBinding
+import com.example.lawdcm.models.CaseDetails
 import com.example.lawdcm.singleton.registrarLoggedIn
 import com.google.android.material.chip.Chip
 import com.google.firebase.database.DataSnapshot
@@ -79,6 +80,11 @@ class DashBoardFragment : Fragment() {
         }
 
 
+        val adapter = AllCasesAdapter(requireActivity())
+        binding.rvScheduleCases.adapter = adapter
+        binding.rvScheduleCases.layoutManager = LinearLayoutManager(requireActivity())
+
+
         /////////////////////////////////FRAGILE
         var judgeWiseCasesHashMap : HashMap<String, ArrayList<String>>
         judgeWiseCasesHashMap = Paper.book().read("NEW_HIGH") ?: hashMapOf()
@@ -89,15 +95,13 @@ class DashBoardFragment : Fragment() {
             val assignedCasesList = judgeWiseCasesHashMap.get(judgeId)  //this is ArrayList<CaseIds> for a particular judge
             AllCasesList.addAll(assignedCasesList!!)
 
+            populateCases(AllCasesList){
+                adapter.setCaseList(unscheduledCaseDetails)
+            }
 
         }
 
             /////////////////////////////////FRAGILE END
-
-        val adapter = AllCasesAdapter(requireActivity())
-        binding.rvScheduleCases.adapter = adapter
-        binding.rvScheduleCases.layoutManager = LinearLayoutManager(requireActivity())
-
 
     }
 
@@ -207,4 +211,18 @@ class DashBoardFragment : Fragment() {
 
 
     }
+
+
+    /////////////////////////FRAGILE
+
+    val unscheduledCaseDetails : ArrayList<CaseDetails> = arrayListOf()
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun populateCases(caseIds : ArrayList<String>, callback: () -> Unit) {
+
+        Utils.makeArrayListofCaseDetailsFromArrayListOfCaseIds(caseIds){
+            unscheduledCaseDetails.addAll(it)
+                callback()
+        }
+    }
+    /////////////////////////FRAGILE END
 }
