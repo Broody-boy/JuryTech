@@ -67,6 +67,23 @@ class DashBoardFragment : Fragment() {
 //                Toast.makeText(requireActivity(), chip.text.toString(), Toast.LENGTH_SHORT).show()
             }
         }
+
+        for (i in 0 until binding.cgTop10Cases.childCount) {
+            val chip = binding.cgTop10Cases.getChildAt(i) as Chip
+            chip.setOnClickListener {
+                changeTopCases(chip.text.toString())
+//                Toast.makeText(requireActivity(), chip.text.toString(), Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun changeTopCases(year: String) {
+
+        when(year){
+            "2016"->binding.ivTop10Cases.setImageResource(R.drawable.top10cases2016)
+            "2017"->binding.ivTop10Cases.setImageResource(R.drawable.top10cases2017)
+            "2018"->binding.ivTop10Cases.setImageResource(R.drawable.top10cases2018)
+        }
     }
 
     private fun changeBar(year: String) {
