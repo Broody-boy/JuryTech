@@ -72,9 +72,9 @@ class DashBoardFragment : Fragment() {
     private fun changeBar(year: String) {
 
         when(year){
-            "2016"->binding.ivPie.setImageResource(R.drawable.bar2016)
-            "2017"->binding.ivPie.setImageResource(R.drawable.bar2017)
-            "2018"->binding.ivPie.setImageResource(R.drawable.bar2018)
+            "2016"->binding.ivBar.setImageResource(R.drawable.bar2016)
+            "2017"->binding.ivBar.setImageResource(R.drawable.bar2017)
+            "2018"->binding.ivBar.setImageResource(R.drawable.bar2018)
         }
 
     }
