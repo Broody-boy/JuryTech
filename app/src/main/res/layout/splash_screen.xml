@@ -3,26 +3,58 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#181e22">
+    android:background="#212020">
 
-    <ImageView
-        android:id="@+id/imgGavel"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/ic_gavel"
-        app:tint="#CBCBCB" />
-
-    <TextView
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/rounded_bold"
-        android:textColor="#0D5EF9"
-        android:text="JuryTech"
-        android:textSize="45dp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/imgGavel"
-        android:layout_marginTop="10dp"/>
+        android:orientation="vertical"
+        android:layout_centerInParent="true">
+        <ImageView
+            android:id="@+id/imgGavel"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_gavel"
+            app:tint="#5364C4" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/imgGavel"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/rounded_bold"
+            android:textColor="@color/white"
+            android:text="Jury"
+            android:textSize="45dp"
+            android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rounded_bold"
+                android:textColor="#0D5EF9"
+                android:text="T"
+                android:textSize="45dp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rounded_bold"
+                android:textColor="#0D5EF9"
+                android:text="ech"
+                android:textSize="45dp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+    </LinearLayout>
 
 </RelativeLayout>
