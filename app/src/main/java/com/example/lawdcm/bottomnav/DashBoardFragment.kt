@@ -11,9 +11,11 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
+import com.example.lawdcm.R
 import com.example.lawdcm.Utils
 import com.example.lawdcm.databinding.FragmentDashBoardBinding
 import com.example.lawdcm.singleton.registrarLoggedIn
+import com.google.android.material.chip.Chip
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -47,6 +49,24 @@ class DashBoardFragment : Fragment() {
         binding.button.setOnClickListener {
             scheduleCases("NEW_HIGH")
             scheduleCases("NEW_LOW")
+        }
+
+
+        for (i in 0 until binding.cgPie.childCount) {
+            val chip = binding.cgPie.getChildAt(i) as Chip
+            chip.setOnClickListener {
+                changePhoto(chip.text.toString())
+//                Toast.makeText(requireActivity(), chip.text.toString(), Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun changePhoto(year: String) {
+
+        when(year){
+            "2016"->binding.ivPie.setImageResource(R.drawable.pie2016)
+            "2017"->binding.ivPie.setImageResource(R.drawable.pie2017)
+            "2018"->binding.ivPie.setImageResource(R.drawable.pie2018)
         }
     }
 
