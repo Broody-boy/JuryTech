@@ -339,23 +339,28 @@
             </com.google.android.material.card.MaterialCardView>
 
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvScheduleCases"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Schedule Cases"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/bg_search_bar"
+                android:paddingHorizontal="25dp"/>
+
+
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="200dp"/>
 
         </LinearLayout>
     </ScrollView>
-
-
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="schCasse"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

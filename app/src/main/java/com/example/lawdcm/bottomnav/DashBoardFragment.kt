@@ -11,8 +11,10 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lawdcm.R
 import com.example.lawdcm.Utils
+import com.example.lawdcm.adapters.AllCasesAdapter
 import com.example.lawdcm.databinding.FragmentDashBoardBinding
 import com.example.lawdcm.singleton.registrarLoggedIn
 import com.google.android.material.chip.Chip
@@ -75,6 +77,28 @@ class DashBoardFragment : Fragment() {
 //                Toast.makeText(requireActivity(), chip.text.toString(), Toast.LENGTH_SHORT).show()
             }
         }
+
+
+        /////////////////////////////////FRAGILE
+        var judgeWiseCasesHashMap : HashMap<String, ArrayList<String>>
+        judgeWiseCasesHashMap = Paper.book().read("NEW_HIGH") ?: hashMapOf()
+        val AllCasesList : ArrayList<String> = arrayListOf()
+
+        for(judgeId in judgeWiseCasesHashMap.keys) {
+
+            val assignedCasesList = judgeWiseCasesHashMap.get(judgeId)  //this is ArrayList<CaseIds> for a particular judge
+            AllCasesList.addAll(assignedCasesList!!)
+
+
+        }
+
+            /////////////////////////////////FRAGILE END
+
+        val adapter = AllCasesAdapter(requireActivity())
+        binding.rvScheduleCases.adapter = adapter
+        binding.rvScheduleCases.layoutManager = LinearLayoutManager(requireActivity())
+
+
     }
 
     private fun changeTopCases(year: String) {
