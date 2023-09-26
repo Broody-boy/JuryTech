@@ -145,7 +145,25 @@ object Utils {
         return curDate.plusDays(1).toString()
     }
 
+    fun makeArrayListofCaseDetailsFromArrayListOfCaseIds(caseIds : ArrayList<String> , callback: (ArrayList<CaseDetails>) -> Unit){
 
+        val caseDetails = ArrayList<CaseDetails>()
+        if(caseIds.isEmpty()){
+            callback(arrayListOf())
+            return
+        }
+        for (case in caseIds){
+
+            fetchCaseDetailsFromCaseId(case){
+                caseDetails.add(it)
+                if (caseIds.lastIndexOf(case) == caseIds.size-1){
+                    callback(caseDetails)
+                    return@fetchCaseDetailsFromCaseId
+                }
+            }
+        }
+
+    }
     fun fetchCaseDetailsFromCaseId(caseId : String , callback : (CaseDetails) -> Unit){
 
         FirebaseDatabase.getInstance().getReference("caseDetails").child(registrarLoggedIn.courtId).child(caseId)
