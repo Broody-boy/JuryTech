@@ -10,33 +10,19 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="170dp"
-        android:background="@drawable/bg_app_bar">
+        android:layout_height="100dp"
+        android:background="@color/black">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="All Cases"
+            android:textSize="35dp"
             android:fontFamily="@font/modernist_regular"
-            android:text="Today's Cases"
             android:textColor="@color/white"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:textStyle="bold"
-            android:textSize="28dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="20dp"/>
-
-        <androidx.appcompat.widget.SearchView
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="@drawable/bg_search_bar"
-            android:layout_marginHorizontal="30dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="30dp"
-            android:textAppearance="@color/white"
-
-            android:hint="Search by Case Name, Respondent, Applicant"
-            />
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="20dp" />
 
     </RelativeLayout>
 
