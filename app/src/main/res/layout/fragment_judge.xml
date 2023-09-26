@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".bottomnav.JudgeFragment">
+    tools:context=".bottomnav.JudgeFragment"
+    android:layout_marginBottom="100dp">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvActiveJudges"
@@ -12,8 +13,9 @@
         android:layout_height="match_parent"
         android:background="#f8f7fc"
         tools:listitem="@layout/item_judge_detail"
-        android:layout_marginBottom="100dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        android:layout_alignBottom="@id/btnAddJudge"
+        android:layout_marginBottom="50dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:spanCount="2"/>
 
     <androidx.appcompat.widget.AppCompatButton
@@ -21,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_button_login"
-        android:text="ADD A NEW JUDGE"
+        android:text="Add a new judge"
         android:textSize="20dp"
         android:fontFamily="@font/rounded_bold"
         android:textColor="@color/white"
