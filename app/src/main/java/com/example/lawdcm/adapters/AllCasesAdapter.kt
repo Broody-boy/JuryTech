@@ -31,15 +31,16 @@ class AllCasesAdapter(val cntxt : Context) : RecyclerView.Adapter<AllCasesAdapte
         val caseDetailInHand = casesList[position]
         holder.tvJudgeName.text = caseDetailInHand.judgeName
         holder.tvCaseId.text = caseDetailInHand.caseId
-        holder.tvCaseName.text = caseDetailInHand.caseName
-        holder.tvCaseActSection.text = "Act " + caseDetailInHand.caseAct + " Section " + caseDetailInHand.caseActSection
+        holder.tvCaseParties.text = caseDetailInHand.caseName
+        holder.tvCaseAct.text = "Act " + caseDetailInHand.caseAct
+        holder.tvCaseSection.text = "Section " + caseDetailInHand.caseActSection
         holder.tvCaseId.text = caseDetailInHand.caseId
         holder.tvCaseCategory.text = caseDetailInHand.caseCategory
         //holder.tvJudgeId.text = judgeDetailInHand.judgeId
 
         storageRef.child("judgeProfile").child("${caseDetailInHand.judgeId}.jpg")
             .downloadUrl.addOnSuccessListener {
-                Toast.makeText(cntxt, "$it", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(cntxt, "$it", Toast.LENGTH_SHORT).show()
                 Glide.with(cntxt).load(it).into(holder.imgJudge)
             }
             .addOnFailureListener { Toast.makeText(cntxt, "${it.message}", Toast.LENGTH_SHORT).show() }
@@ -55,9 +56,10 @@ class AllCasesAdapter(val cntxt : Context) : RecyclerView.Adapter<AllCasesAdapte
     class ViewHolder(val binding: ItemCasesBinding) : RecyclerView.ViewHolder(binding.root) {
         val imgJudge = binding.imgImageofJudgeAssigned
         val tvJudgeName = binding.tvJudgeName
-        val tvCaseName = binding.tvCaseName
+        val tvCaseParties = binding.tvCaseParties
         val tvCaseId = binding.tvCaseId
         val tvCaseCategory = binding.tvCaseCategory
-        val tvCaseActSection = binding.tvCaseActSection
+        val tvCaseAct = binding.tvCaseAct
+        val tvCaseSection = binding.tvCaseSection
     }
 }

@@ -2,90 +2,129 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="12dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingHorizontal="20dp">
 
-    <LinearLayout
-        android:id="@+id/layoutCaseActSection"
-        android:layout_width="match_parent"
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvMaid"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@drawable/bg_card_header"
-        android:paddingVertical="4dp"
-        android:layout_marginHorizontal="60dp">
-    <TextView
-        android:id="@+id/tvCaseActSection"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:text="Act 303 Section A"
-        android:fontFamily="@font/rounded_medium"
-        android:textColor="@color/white"
-        android:gravity="center_horizontal"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@id/layoutCaseActSection">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
+        android:focusable="true"
+        android:clickable="true"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardElevation="0dp"
+        app:strokeColor="#D9D9D9"
+        app:strokeWidth="1dp"
+        android:layout_marginVertical="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:background="@drawable/outline_chip_style"
-            android:layout_gravity="end">
-            <TextView
+            android:padding="20dp">
+
+            <LinearLayout
+                android:id="@+id/layoutCaseActSection"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="criminal" />
+                android:orientation="vertical"
+                android:paddingVertical="4dp"
+                android:layout_centerHorizontal="true">
+                <TextView
+                    android:id="@+id/tvCaseAct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="40dp"
+                    android:text="Act 303"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/modernist_regular"
+                    android:gravity="center_horizontal"/>
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_alert"/>
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tvCaseSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="40dp"
+                    android:text="Section A"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/modernist_regular"
+                    android:gravity="center_horizontal"/>
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvCaseName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rahul vs Jack Sparrow"/>
-
-        <TextView
-            android:id="@+id/tvCaseId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2856230259838633"/>
-
-
-        <TextView
-            android:id="@+id/tvCaseCategory"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Theft"/>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="bottom"
-            android:layout_gravity="end">
-
-            <TextView
-                android:id="@+id/tvJudgeName"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Rakesh Sinha"
-                android:layout_marginBottom="4dp"/>
+                android:orientation="vertical"
+                android:layout_below="@id/layoutCaseActSection">
 
-            <com.mikhaellopez.circularimageview.CircularImageView
-                android:id="@+id/imgImageofJudgeAssigned"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:src="@drawable/img_judge"/>
-        </LinearLayout>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_alert"
+                    android:layout_gravity="end"/>
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/tvCaseParties"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Applicant vs Respondent"
+                    android:textSize="22dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/modernist_regular"
+                    />
 
+                <TextView
+                    android:id="@+id/tvCaseId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2856230259838633"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/modernist_regular"
+                    android:layout_marginTop="10dp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/tvCaseCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Theft"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/modernist_regular"
+                    android:layout_marginTop="10dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="bottom"
+                    android:layout_gravity="end">
+
+                    <TextView
+                        android:id="@+id/tvJudgeName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rakesh Sinha"
+                        android:textSize="16dp"
+                        android:textColor="@color/black"
+                        android:fontFamily="@font/modernist_regular"
+                        android:layout_marginBottom="4dp"/>
+
+                    <com.mikhaellopez.circularimageview.CircularImageView
+                        android:id="@+id/imgImageofJudgeAssigned"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/img_judge"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
 </RelativeLayout>
