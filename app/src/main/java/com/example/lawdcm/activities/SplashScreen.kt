@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import com.example.lawdcm.LoginPage
 import com.example.lawdcm.MainActivity
 import com.example.lawdcm.R
 
@@ -12,7 +13,7 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_screen)
 
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, LoginPage::class.java)
 
         // Create a Handler to post a delayed action
         val handler = Handler()
