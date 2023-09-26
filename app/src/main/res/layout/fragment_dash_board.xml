@@ -31,7 +31,7 @@
         android:fontFamily="@font/modernist_regular"
         android:textColor="@color/white"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="25dp"
         android:layout_marginStart="20dp" />
 
 
@@ -55,7 +55,7 @@
             android:layout_marginStart="20dp" />
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cv2016"
+                android:id="@+id/cvPie"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:focusable="true"
@@ -147,6 +147,107 @@
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:clickable="true"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#D9D9D9"
+                app:strokeWidth="1dp"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/cgBar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:singleSelection="true"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="10dp"
+                        app:selectionRequired="true"
+                        android:layout_gravity="center_horizontal">
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipBar2016"
+                            android:layout_width="wrap_content"
+                            android:layout_height="54dp"
+                            android:textColor="@color/faq_chip_text_color_selector"
+                            app:chipBackgroundColor="@color/faq_chip_background_color_selector"
+                            app:chipStrokeColor="@color/faq_chip_stroke_color_selector"
+                            android:text="2016"
+                            android:textSize="19dp"
+                            android:fontFamily="@font/modernist_regular"
+                            app:chipStrokeWidth="1.7dp"
+                            app:chipCornerRadius="11dp"
+                            android:checkable="true"
+                            android:checked="true"
+                            app:checkedIcon="@null"
+                            app:chipStartPadding="10dp"
+                            app:chipEndPadding="10dp"
+                            android:layout_marginHorizontal="2.5dp" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipBar2017"
+                            android:layout_width="wrap_content"
+                            android:layout_height="56dp"
+                            android:textColor="@color/faq_chip_text_color_selector"
+                            app:chipBackgroundColor="@color/faq_chip_background_color_selector"
+                            app:chipStrokeColor="@color/faq_chip_stroke_color_selector"
+                            android:text="2017"
+                            android:textSize="19dp"
+                            app:chipStrokeWidth="1.7dp"
+                            app:chipCornerRadius="11dp"
+                            android:checkable="true"
+                            app:checkedIcon="@null"
+                            app:chipStartPadding="10dp"
+                            app:chipEndPadding="10dp"
+                            android:layout_marginHorizontal="2.5dp" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/chipBar2018"
+                            android:layout_width="wrap_content"
+                            android:layout_height="56dp"
+                            android:textColor="@color/faq_chip_text_color_selector"
+                            app:chipBackgroundColor="@color/faq_chip_background_color_selector"
+                            app:chipStrokeColor="@color/faq_chip_stroke_color_selector"
+                            android:text="2018"
+                            android:textSize="19dp"
+                            app:chipStrokeWidth="1.7dp"
+                            app:chipCornerRadius="11dp"
+                            android:checkable="true"
+                            app:checkedIcon="@null"
+                            app:chipStartPadding="10dp"
+                            app:chipEndPadding="10dp"
+                            android:layout_marginHorizontal="2.5dp" />
+                    </com.google.android.material.chip.ChipGroup>
+
+
+                    <ImageView
+                        android:id="@+id/ivBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="250dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bar2016" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="200dp"/>
 
         </LinearLayout>
     </ScrollView>
