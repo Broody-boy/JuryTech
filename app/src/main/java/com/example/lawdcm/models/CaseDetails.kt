@@ -13,8 +13,10 @@ data class CaseDetails(
     var caseActSection: String? = null,
     var applicantId: String? = null,
     var respondentId: String? = null,
-    var priorityCategory: String? = null,      // enum(caps) -> NEW_HIGH/ NEW_LOW/ OLD/ ONGOING_HIGH/ ONGOING_LOW/ Buffer
+    var priorityCategory: String? = null,      // enum(caps) -> NEW_HIGH/ NEW_LOW/ OLD/ ONGOING_HIGH/ ONGOING_LOW/ BUFFER
     var judgeId : String? = null,
     var judgeName : String? = null,
-    var priorityNumber: Double = 0.0
+    var priorityNumber: Double = 0.0,
+    var stateCode : Int? = null,
+    var districtCode : Int? = null
 )

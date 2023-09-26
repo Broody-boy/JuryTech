@@ -6,6 +6,13 @@ import com.example.lawdcm.models.CaseDetails
 
 class AllCasesViewModel : ViewModel() {
 
-    var listOfAllCases = MutableLiveData<ArrayList<CaseDetails>>()
+    var listOldCases = MutableLiveData<ArrayList<CaseDetails>>()
+    var listNewHighPriority = MutableLiveData<ArrayList<CaseDetails>>()
+    var listNewLowPriority = MutableLiveData<ArrayList<CaseDetails>>()
+    var listOngoingHighPriority = MutableLiveData<ArrayList<CaseDetails>>()
+    var listOngoingLowPriority = MutableLiveData<ArrayList<CaseDetails>>()
+    var listBuffer = MutableLiveData<ArrayList<CaseDetails>>()
+
+
 
 }

@@ -3,6 +3,7 @@ package com.example.lawdcm
 import android.content.Context
 import android.os.Build
 import android.util.Log
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
@@ -48,8 +49,9 @@ object Utils {
         })
     }
 
-    fun populateCasesIntoViewModel(courtId : String, callback: (ArrayList<CaseDetails>) -> Unit){
-        val dbreference = FirebaseDatabase.getInstance().getReference("caseDetails").child(courtId).child("newCases")
+    fun populateCasesIntoViewModel(courtId : String, priorityCategory : String, callback: (ArrayList<CaseDetails>) -> Unit){
+        val dbreference = FirebaseDatabase.getInstance().getReference("caseDetails").child(courtId)
+            .orderByChild("priorityCategory").equalTo(priorityCategory)
 
         dbreference.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -135,6 +137,49 @@ object Utils {
     fun getCurrentDate(): String {
         return LocalDate.now().toString()
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getNextCalenderDate(date : String) : String{
+        val formatter = java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        val curDate = LocalDate.parse(date, formatter)
+        return curDate.plusDays(1).toString()
+    }
+
+    fun makeArrayListofCaseDetailsFromArrayListOfCaseIds(caseIds : ArrayList<String> , callback: (ArrayList<CaseDetails>) -> Unit){
+
+        val caseDetails = ArrayList<CaseDetails>()
+        if(caseIds.isEmpty()){
+            callback(arrayListOf())
+            return
+        }
+        for (case in caseIds){
+
+            fetchCaseDetailsFromCaseId(case){
+                caseDetails.add(it)
+                if (caseIds.lastIndexOf(case) == caseIds.size-1){
+                    callback(caseDetails)
+                    return@fetchCaseDetailsFromCaseId
+                }
+            }
+        }
+
+    }
+    fun fetchCaseDetailsFromCaseId(caseId : String , callback : (CaseDetails) -> Unit){
+
+        FirebaseDatabase.getInstance().getReference("caseDetails").child(registrarLoggedIn.courtId).child(caseId)
+            .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    snapshot.getValue(CaseDetails::class.java)?.let { callback(it) }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.d("errorhere", "error")
+                }
+
+            })
+    }
+
+
 
     interface LoggedInRegistrarDetailsCallBack{
         fun onRegistrarDetailsFetched(registrar : RegistrarAuth)

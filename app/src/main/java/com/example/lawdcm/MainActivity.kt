@@ -12,7 +12,6 @@ import com.example.lawdcm.bottomnav.ProfileFragment
 import com.example.lawdcm.databinding.ActivityMainBinding
 import com.example.lawdcm.singleton.registrarLoggedIn
 import com.example.lawdcm.viewmodels.AllCasesViewModel
-import com.example.lawdcm.viewmodels.RegisterNewCaseViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -26,11 +25,28 @@ class MainActivity : AppCompatActivity() {
 
         val vmAllCases = ViewModelProvider(this)[AllCasesViewModel::class.java]
 
-        registrarLoggedIn.dataFetchComplete.observe(this){ b ->
-            if(b)
-                Utils.populateCasesIntoViewModel(registrarLoggedIn.courtId){
-                    vmAllCases.listOfAllCases.postValue(it)
+        registrarLoggedIn.dataFetchComplete.observe(this){ bool ->
+            if(bool) {
+                Utils.populateCasesIntoViewModel(registrarLoggedIn.courtId, "NEW_HIGH") {
+                    vmAllCases.listNewHighPriority.postValue(it)
                 }
+                Utils.populateCasesIntoViewModel(registrarLoggedIn.courtId, "NEW_LOW") {
+                    vmAllCases.listNewLowPriority.postValue(it)
+                }
+                Utils.populateCasesIntoViewModel(registrarLoggedIn.courtId, "ONGOING_HIGH") {
+                    vmAllCases.listOngoingHighPriority.postValue(it)
+                }
+                Utils.populateCasesIntoViewModel(registrarLoggedIn.courtId, "ONGOING_LOW") {
+                    vmAllCases.listOngoingLowPriority.postValue(it)
+                }
+                Utils.populateCasesIntoViewModel(registrarLoggedIn.courtId, "OLD") {
+                    vmAllCases.listOldCases.postValue(it)
+                }
+                Utils.populateCasesIntoViewModel(registrarLoggedIn.courtId, "BUFFER") {
+                    vmAllCases.listBuffer.postValue(it)
+                }
+
+            }
         }
 
 
@@ -96,7 +112,7 @@ class MainActivity : AppCompatActivity() {
                     R.id.imgCases -> setFragment(allCasesFragment)
                     R.id.imgProfile -> setFragment(profileFragment)
                 }
-                idClicked = 0
+                idClicked = 0               //logic samaj nhi aaya 0 karne ka
             }
         }
 

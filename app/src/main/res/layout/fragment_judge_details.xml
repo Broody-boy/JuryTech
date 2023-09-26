@@ -82,7 +82,7 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnAddToCasePool"
+                android:id="@+id/btnAddToPaperQueue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_button_login"

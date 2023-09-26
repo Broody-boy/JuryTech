@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import com.example.lawdcm.models.CaseDetails
 import com.example.lawdcm.models.PartyDetails
 
-class RegisterNewCaseViewModel : ViewModel() {
+class CaseDetailsVM : ViewModel() {
     var caseDetailsCollectionObject : CaseDetails = CaseDetails()
     val collection : MutableLiveData<CaseDetails> = MutableLiveData()
     var applicantDetails : PartyDetails = PartyDetails()
