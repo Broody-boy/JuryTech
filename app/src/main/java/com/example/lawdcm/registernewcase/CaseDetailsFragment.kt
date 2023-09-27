@@ -2,6 +2,7 @@ package com.example.lawdcm.registernewcase
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.example.lawdcm.MainActivity
 import com.example.lawdcm.R
 import com.example.lawdcm.databinding.FragmentCaseDetailsBinding
 import com.example.lawdcm.models.CaseDetails
@@ -40,7 +42,10 @@ class CaseDetailsFragment : Fragment() {
 
         if(!isAdded) return
 
-
+//        binding.imgBack.setOnClickListener {
+//            startActivity(Intent(requireActivity(), MainActivity::class.java))
+//            requireActivity().finish()
+//        }
 
         val adapterCaseType = ArrayAdapter(requireActivity(), R.layout.auto_textview , DropdownDataList.caseTypeList)
         binding.spinnerCaseType.adapter = adapterCaseType

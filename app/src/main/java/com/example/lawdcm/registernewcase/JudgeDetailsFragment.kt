@@ -11,6 +11,8 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import com.example.lawdcm.R
 import com.example.lawdcm.Utils
 import com.example.lawdcm.databinding.FragmentJudgeDetailsBinding
@@ -35,6 +37,7 @@ class JudgeDetailsFragment : Fragment() {
     private lateinit var vmCaseDetails: CaseDetailsVM
     private var judgeNameList : ArrayList<String> = ArrayList()
     private val dbRef : DatabaseReference = FirebaseDatabase.getInstance().getReference()
+//    private var navController: NavController = findNavController()
     
 
     override fun onCreateView(
@@ -50,6 +53,10 @@ class JudgeDetailsFragment : Fragment() {
 
         if(!isAdded) return
 
+//        binding.imgBack.setOnClickListener {
+//            navController.popBackStack()
+//        }
+
         val alljudges  = ActiveJudges.activeJudgesList.value
         judgeNameList.clear()
         for(judge in alljudges!!){
@@ -62,6 +69,7 @@ class JudgeDetailsFragment : Fragment() {
 
         binding.btnAddToPaperQueue.setOnClickListener {
             getCasePriority()
+
         }
     }
     private fun getCasePriority() {
@@ -145,6 +153,7 @@ class JudgeDetailsFragment : Fragment() {
             .child(vmCaseDetails.caseDetailsCollectionObject.caseId!!).setValue(vmCaseDetails.caseDetailsCollectionObject)
             .addOnCompleteListener {
                 Toast.makeText(requireActivity(), "Case Uploaded", Toast.LENGTH_SHORT).show()
+                requireActivity().finish()
             }.addOnFailureListener {
                 Toast.makeText(requireActivity(), "Try Again Later", Toast.LENGTH_SHORT).show()
                 return@addOnFailureListener

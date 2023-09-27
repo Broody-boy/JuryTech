@@ -7,6 +7,24 @@
     tools:context=".bottomnav.JudgeFragment"
     android:layout_marginBottom="100dp">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/black">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="All Judges"
+            android:textSize="35dp"
+            android:fontFamily="@font/modernist_regular"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="25dp"
+            android:layout_marginStart="20dp" />
+
+    </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvActiveJudges"
         android:layout_width="match_parent"
@@ -15,6 +33,7 @@
         tools:listitem="@layout/item_judge_detail"
         android:layout_alignBottom="@id/btnAddJudge"
         android:layout_marginBottom="50dp"
+        android:layout_marginTop="100dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:spanCount="2"/>
 

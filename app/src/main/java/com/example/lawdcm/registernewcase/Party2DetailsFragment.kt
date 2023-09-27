@@ -36,6 +36,10 @@ class Party2DetailsFragment : Fragment() {
 
         if(!isAdded) return
 
+//        binding.imgBack.setOnClickListener {
+//            navController.popBackStack()
+//        }
+
         vmRegisterNewCaseViewModel = ViewModelProvider(requireActivity())[CaseDetailsVM::class.java]
 
         navController = findNavController()
